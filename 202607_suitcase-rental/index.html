@@ -52,6 +52,21 @@
     }
 
     header.hero { padding-block: 26px 18px; }
+    .hero-visual {
+      margin: 4px 0 24px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .hero-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1280 / 670;
+      object-fit: cover;
+    }
     .kicker {
       font-size: .74rem;
       letter-spacing: .08em;
@@ -162,6 +177,15 @@
 
     <header class="hero">
       <div class="kicker">SUITCASE</div>
+      <figure class="hero-visual">
+        <img
+          src="suitcase-rental-hero.webp"
+          width="1280"
+          height="670"
+          alt="保管中に劣化するスーツケースと、旅程に合わせて選べる3サイズのレンタルスーツケースの比較"
+          fetchpriority="high"
+        >
+      </figure>
       <h1>スーツケースを買わずに借りている理由</h1>
       <p class="lede">
         結論から言うと、買ったほうがいい人は限られています。
