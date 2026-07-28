@@ -169,35 +169,329 @@
     footer p { margin: 0 0 6px; }
     footer a { text-decoration: underline; }
   </style>
+  <style>
+    /* 旅の豆知識 共通デザイン */
+    :root {
+      --paper-deep: #e9e1d2;
+      --forest-light: #245048;
+      --orange-pale: #f4c8af;
+      --serif: "BIZ UDPGothic", "Yu Gothic UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      --sans: "Yu Gothic", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    }
+    body {
+      background:
+        linear-gradient(rgba(23, 51, 47, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 51, 47, .025) 1px, transparent 1px),
+        var(--paper);
+      background-size: 32px 32px;
+      font-family: var(--sans);
+      line-height: 1.95;
+    }
+    .shell { width: min(1180px, calc(100% - 40px)); }
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 88px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      text-decoration: none;
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--white);
+      background: var(--orange);
+      font-family: var(--serif);
+      font-size: .82rem;
+      box-shadow: 0 0 0 5px rgba(227, 108, 56, .10);
+    }
+    .site-nav { display: flex; gap: 28px; }
+    .site-nav a { color: var(--muted); font-size: .82rem; text-decoration: none; }
+    .site-nav a:hover { color: var(--ink); }
+
+    .article-page { padding-block: 26px 96px; }
+    .pr-notice {
+      display: inline-block;
+      margin: 0 0 22px;
+      padding: 6px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      font-size: .7rem;
+      letter-spacing: .04em;
+    }
+    .article-hero {
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+      align-items: center;
+      gap: clamp(38px, 7vw, 88px);
+      padding: 12px 0 62px;
+    }
+    .article-hero .kicker {
+      margin-bottom: 16px;
+      letter-spacing: .16em;
+    }
+    .article-hero h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4.3vw, 4rem);
+      font-weight: 700;
+      line-height: 1.28;
+      letter-spacing: .025em;
+    }
+    .article-hero .lede {
+      margin: 24px 0 0;
+      font-size: .98rem;
+      line-height: 1.9;
+    }
+    .article-hero .hero-visual {
+      margin: 0;
+      border: 0;
+      border-radius: 3px;
+      box-shadow: var(--shadow);
+    }
+    .article-hero .hero-visual img {
+      aspect-ratio: 1.91;
+      object-fit: cover;
+    }
+
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 76px;
+      border-block: 1px solid var(--line);
+    }
+    .fact { padding: 24px 28px; }
+    .fact + .fact { border-left: 1px solid var(--line); }
+    .fact-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    .fact strong {
+      display: block;
+      color: var(--forest);
+      font-family: var(--serif);
+      font-size: clamp(1.15rem, 2vw, 1.55rem);
+      line-height: 1.45;
+    }
+    .fact small { color: var(--muted); font-size: .72rem; }
+
+    .article-layout {
+      display: grid;
+      grid-template-columns: 200px minmax(0, 760px);
+      justify-content: center;
+      gap: clamp(42px, 7vw, 92px);
+      align-items: start;
+    }
+    .toc {
+      position: sticky;
+      top: 24px;
+      padding-top: 4px;
+    }
+    .toc-title {
+      margin: 0 0 15px;
+      color: var(--orange);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+    }
+    .toc ol { margin: 0; padding: 0; list-style: none; counter-reset: toc; }
+    .toc li { counter-increment: toc; margin: 0; border-top: 1px solid var(--line); }
+    .toc li:last-child { border-bottom: 1px solid var(--line); }
+    .toc a {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 7px;
+      padding: 10px 0;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .72rem;
+      line-height: 1.55;
+    }
+    .toc a::before { content: counter(toc, decimal-leading-zero); color: var(--orange); }
+    .toc a:hover { color: var(--ink); }
+
+    .article-body { padding: 0; min-width: 0; }
+    .article-body > p:first-child { font-size: 1.05rem; }
+    .article-body h2 {
+      margin: 78px 0 24px;
+      padding: 0 0 14px;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--serif);
+      font-size: clamp(1.45rem, 2.5vw, 2rem);
+      line-height: 1.55;
+      letter-spacing: .02em;
+    }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body p { margin-bottom: 21px; }
+    .article-body strong { color: var(--forest); }
+    .article-body a { text-underline-offset: 4px; }
+    .article-body table {
+      border: 0;
+      font-size: .84rem;
+      background: var(--white);
+      box-shadow: 0 10px 30px rgba(21, 32, 31, .07);
+    }
+    .article-body th,
+    .article-body td { border: 0; border-bottom: 1px solid var(--line); padding: 13px 15px; }
+    .article-body th { color: var(--forest); background: rgba(79, 169, 154, .09); }
+    .article-body tbody tr:last-child th,
+    .article-body tbody tr:last-child td { border-bottom: 0; }
+    .caption { margin-top: 4px; text-align: right; }
+    .note-box {
+      margin: 30px 0;
+      padding: 22px 26px;
+      border: 0;
+      border-left: 4px solid var(--orange);
+      border-radius: 0 3px 3px 0;
+      background: var(--white);
+      box-shadow: 0 12px 34px rgba(21, 32, 31, .07);
+    }
+    .verdict {
+      margin: 32px 0;
+      padding: 28px 32px;
+      border: 1px solid rgba(79, 169, 154, .28);
+      border-radius: 3px;
+      background: linear-gradient(135deg, var(--white), rgba(79, 169, 154, .08));
+      box-shadow: var(--shadow);
+    }
+    .cta {
+      position: relative;
+      overflow: hidden;
+      margin: 38px 0;
+      padding: 32px 34px;
+      border-radius: 3px;
+      background: var(--forest);
+    }
+    .cta::after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      bottom: -90px;
+      width: 220px;
+      aspect-ratio: 1;
+      border: 34px solid rgba(79, 169, 154, .18);
+      border-radius: 50%;
+    }
+    .cta h3, .cta p, .cta a, .cta .pending { position: relative; z-index: 1; }
+    .cta h3 { font-family: var(--serif); font-size: 1.25rem; }
+    .cta a.btn { background: var(--orange); box-shadow: 0 10px 24px rgba(0, 0, 0, .16); }
+
+    .site-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding-block: 30px 48px;
+      color: var(--muted);
+      font-size: .78rem;
+      text-align: left;
+    }
+    .site-footer p { margin: 0; }
+
+    @media (max-width: 900px) {
+      .article-hero { grid-template-columns: 1fr; }
+      .article-hero-copy { max-width: 720px; }
+      .article-layout { grid-template-columns: 1fr; }
+      .toc { position: static; width: min(100%, 760px); margin-inline: auto; }
+      .toc ol { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 24px; }
+      .article-body { width: min(100%, 760px); margin-inline: auto; }
+    }
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 28px, 1180px); }
+      .site-header { min-height: 72px; }
+      .site-nav { gap: 14px; }
+      .site-nav a:first-child { display: none; }
+      .article-page { padding-block: 20px 68px; }
+      .article-hero { gap: 34px; padding-bottom: 42px; }
+      .article-hero h1 { font-size: clamp(2rem, 10vw, 3rem); }
+      .article-hero .hero-visual img { aspect-ratio: 1.45; object-position: center; }
+      .quick-facts { grid-template-columns: 1fr; margin-bottom: 54px; }
+      .fact { padding: 18px 4px; }
+      .fact + .fact { border-left: 0; border-top: 1px solid var(--line); }
+      .toc ol { grid-template-columns: 1fr; }
+      .article-body h2 { margin-top: 58px; }
+      .table-wrap { margin-inline: -14px; padding-inline: 14px; }
+      .note-box, .verdict, .cta { margin-inline: -4px; padding: 22px 20px; }
+      .site-footer { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
   <div class="shell">
-    <a class="back" href="../">← 記事一覧へ</a>
-    <div class="pr-notice">本記事にはアフィリエイトリンクを含みます。</div>
-
-    <header class="hero">
-      <div class="kicker">SUITCASE</div>
-      <figure class="hero-visual">
-        <img
-          src="suitcase-rental-hero.webp"
-          width="1280"
-          height="670"
-          alt="保管中に劣化するスーツケースと、旅程に合わせて選べる3サイズのレンタルスーツケースの比較"
-          fetchpriority="high"
-        >
-      </figure>
-      <h1>スーツケースを買わずに借りている理由</h1>
-      <p class="lede">
-        結論から言うと、買ったほうがいい人は限られています。
-        今後5年10年にわたって海外へ頻繁に行き、しかも毎回だいたい同じ荷物量で済むなら、
-        保証と修理体制のしっかりしたブランドを買うのが確実です。そこは迷う必要がありません。
-        ただし、その条件から一つでも外れると計算が変わります。
-      </p>
+    <header class="site-header">
+      <a class="brand" href="../"><span class="brand-mark">豆</span>旅の豆知識</a>
+      <nav class="site-nav" aria-label="サイトメニュー">
+        <a href="../">記事一覧</a>
+        <a href="../about/">運営者情報</a>
+      </nav>
     </header>
 
-    <article>
+    <main class="article-page">
+      <div class="pr-notice">本記事にはアフィリエイトリンクを含みます</div>
 
-      <h2>泊数の目安だけではサイズが決まらない</h2>
+      <header class="article-hero">
+        <div class="article-hero-copy">
+          <div class="kicker">SUITCASE / COST &amp; USE</div>
+          <h1>スーツケースを<br>買わずに借りている理由</h1>
+          <p class="lede">
+            結論から言うと、買ったほうがいい人は限られています。
+            今後5年10年にわたって海外へ頻繁に行き、しかも毎回だいたい同じ荷物量で済むなら、
+            保証と修理体制のしっかりしたブランドを買うのが確実です。そこは迷う必要がありません。
+            ただし、その条件から一つでも外れると計算が変わります。
+          </p>
+        </div>
+        <figure class="hero-visual">
+          <img
+            src="suitcase-rental-hero.webp"
+            width="1280"
+            height="670"
+            alt="保管中に劣化するスーツケースと、旅程に合わせて選べる3サイズのレンタルスーツケースの比較"
+            fetchpriority="high"
+          >
+        </figure>
+      </header>
+
+      <section class="quick-facts" aria-label="記事の要点">
+        <div class="fact"><span class="fact-label">1サイズの購入分岐</span><strong>約14回</strong><small>68L・レンタル10泊との比較</small></div>
+        <div class="fact"><span class="fact-label">3サイズを揃えると</span><strong>26万円超</strong><small>分岐点は40回超・5年以上先</small></div>
+        <div class="fact"><span class="fact-label">前後1日の余裕</span><strong>追加 ¥450</strong><small>帰国遅延に備える日数の保険</small></div>
+      </section>
+
+      <div class="article-layout">
+        <aside class="toc" aria-label="目次">
+          <p class="toc-title">CONTENTS</p>
+          <ol>
+            <li><a href="#size">泊数だけでは決まらない</a></li>
+            <li><a href="#break-even">購入の損益分岐</a></li>
+            <li><a href="#storage">保管コスト</a></li>
+            <li><a href="#cheap">安い物を買う問題</a></li>
+            <li><a href="#decision">結局どう選ぶか</a></li>
+            <li><a href="#buffer">前後1日の余裕</a></li>
+            <li><a href="#damage">壊れたとき</a></li>
+            <li><a href="#jcb">JCBカード優待</a></li>
+          </ol>
+        </aside>
+
+        <article class="article-body">
+
+      <h2 id="size">泊数の目安だけではサイズが決まらない</h2>
       <p>
         レンタル各社のサイズ目安は、おおむね36Lで1〜3泊、68Lで3〜5泊、94Lで5〜10泊、123L以上で10泊超といったところです。
         ところが、この目安は実際にはあまり当てになりません。
@@ -214,8 +508,18 @@
         小さめを買えば、冬場や展示会帰りで詰められなくなります。
         <strong>行程ごとに条件を見てサイズを選び直す、という判断そのものができなくなる</strong>のが所有の制約です。
       </p>
+      <p>
+        変わるのはサイズだけではありません。国内の家族旅行なら、はぐれてもすぐ見つかる赤系の色を選びたくなります。
+        長期の海外出張では、多少重くても耐久性のある作りを優先します。
+        今回のように滞在中の出し入れが多い行程なら、上から積む方式よりフロントオープン式のほうが扱いやすい。
+        荷物の扱いが荒いと聞いている空港が経由地にあるなら、ハードケースより衝撃に強いソフトケース(布系)を選ぶ理由になります。
+        娘の修学旅行のときは、以前の家族旅行で使った大きめのサイズをそのまま指定されました。
+        色・素材・開き方・サイズ、この4つを行程ごとに選び直せるのは、
+        <a href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3777029&pid=892667717" rel="nofollow noopener" target="_blank">アールワイレンタル</a>
+        のようにラインナップの幅があるレンタルならではです。
+      </p>
 
-      <h2>サイズを揃えると分岐点が遠のく</h2>
+      <h2 id="break-even">サイズを揃えると分岐点が遠のく</h2>
       <p>
         では実際に買うといくらかかるのか。サムソナイトのC-Liteで見てみます。
       </p>
@@ -248,7 +552,7 @@
         購入では、この最も出番の少ない1本に最も多く払うことになります。
       </p>
 
-      <h2>置いておくだけで毎年かかる費用</h2>
+      <h2 id="storage">置いておくだけで毎年かかる費用</h2>
       <p>
         購入価格の比較には、保管の費用が入っていません。
         94Lサイズは75×51cm。出し入れの余地を含めて約0.25㎡を占有します。
@@ -263,7 +567,7 @@
         ¥15,000の箱でも¥150,000の箱でも、占有する面積は変わりません。
       </p>
 
-      <h2>たまにしか使わないなら安いのでいい、が成り立たない</h2>
+      <h2 id="cheap">たまにしか使わないなら安いのでいい、が成り立たない</h2>
       <p>
         イオンや無印には1〜2万円台のスーツケースがあります。
         レンタル2〜3回分なので、価格だけ見れば買ったほうが安い。
@@ -284,7 +588,7 @@
         使い込んで元を取るという所有のメリットを受け取れません。
       </p>
 
-      <h2>結局どう選ぶか</h2>
+      <h2 id="decision">結局どう選ぶか</h2>
       <div class="table-wrap">
         <table>
           <thead>
@@ -317,7 +621,7 @@
         </p>
       </div>
 
-      <h2>期間は前後1日の余裕を取る</h2>
+      <h2 id="buffer">期間は前後1日の余裕を取る</h2>
       <p>
         レンタルで唯一気をつけているのが日数の取り方です。
         アールワイレンタルの規約では、発送後の期間延長は原則として認められず、
@@ -333,7 +637,7 @@
         <strong>その保険が¥450で買えると考えれば安いはずです。</strong>
       </div>
 
-      <h2>壊れたときは郵送するだけで終わった</h2>
+      <h2 id="damage">壊れたときは郵送するだけで終わった</h2>
       <p>
         一度、車輪が壊れたことがあります。レンタル会社に連絡して、そのまま郵送で返却して終わりました。
         自分の持ち物なら、修理に出す手間と、次の出張までに間に合うかという心配が発生します。
@@ -349,10 +653,9 @@
         <a class="btn" href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3777029&pid=892667717" rel="nofollow noopener" target="_blank">アールワイレンタルを見る</a>
       </div>
 
-      <h2>JCBカードの優待割引が使える</h2>
+      <h2 id="jcb">JCBカードの優待割引が使える</h2>
       <p>
-        アールワイレンタルはJCBカードの会員優待の対象です。
-        手元の注文履歴を見ると、2023年12月以降の注文は件名に優待割引の表示が付いています。
+        アールワイレンタルはJCBカードの会員優待の対象で、2023年12月以降、実際に割引価格で利用できています。
         レンタルを繰り返す前提なら、この割引の有無は無視できない差になります。
       </p>
       <p>
@@ -367,9 +670,11 @@
         <div class="pending">※提携審査中のため、リンク先は未設定です</div>
       </div>
 
-    </article>
+        </article>
+      </div>
+    </main>
 
-    <footer>
+    <footer class="site-footer">
       <p>&copy; 2026 旅の豆知識</p>
       <p><a href="../about/">運営者情報</a> ・ <a href="../privacy/">プライバシーポリシー</a></p>
     </footer>
