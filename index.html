@@ -193,6 +193,7 @@
     }
     .section-head p { margin: 0; color: var(--muted); font-size: .84rem; }
 
+    .story-list { display: flex; flex-direction: column; gap: 28px; }
     .featured {
       display: grid;
       grid-template-columns: 1.08fr .92fr;
@@ -304,20 +305,33 @@
 
       <section class="latest" id="latest">
         <div class="section-head">
-          <div><p class="eyebrow">LATEST STORY</p><h2>最新の記事</h2></div>
+          <div><p class="eyebrow">STORIES</p><h2>記事一覧</h2></div>
           <p>noteやXから紹介した内容の詳細版です。</p>
         </div>
-        <a class="featured" href="./202607_suitcase-rental/">
-          <div class="featured-media">
-            <img src="./202607_suitcase-rental/suitcase-rental-hero.webp" width="1280" height="670" alt="所有するスーツケースと旅程に合わせて選べるレンタルスーツケースの比較" loading="lazy">
-          </div>
-          <div class="featured-body">
-            <span class="tag">SUITCASE / COST &amp; USE</span>
-            <h3>スーツケースを<br>買わずに借りている理由</h3>
-            <p>購入価格だけでなく、サイズ違い、保管場所、経年劣化まで含めると結論は変わります。何回使えば購入が得になるのか、具体的に計算しました。</p>
-            <span class="read-more">記事を読む</span>
-          </div>
-        </a>
+        <div class="story-list">
+          <a class="featured" href="./202607_airalo-esim/">
+            <div class="featured-media">
+              <img src="./202607_airalo-esim/airalo-esim-hero.webp" width="1280" height="670" alt="物理SIMやWiFiルーターからeSIMへ切り替える様子と、QRコードで家族に共有するイメージ" loading="lazy">
+            </div>
+            <div class="featured-body">
+              <span class="tag">ESIM / MOBILE DATA</span>
+              <h3>海外出張・旅行で<br>AiraloのeSIMを使っている理由</h3>
+              <p>物理SIMの差し替えやWiFiルーターの電池管理から解放された理由。家族との共有方法やプランの選び方まで整理しました。</p>
+              <span class="read-more">記事を読む</span>
+            </div>
+          </a>
+          <a class="featured" href="./202607_suitcase-rental/">
+            <div class="featured-media">
+              <img src="./202607_suitcase-rental/suitcase-rental-hero.webp" width="1280" height="670" alt="所有するスーツケースと旅程に合わせて選べるレンタルスーツケースの比較" loading="lazy">
+            </div>
+            <div class="featured-body">
+              <span class="tag">SUITCASE / COST &amp; USE</span>
+              <h3>スーツケースを<br>買わずに借りている理由</h3>
+              <p>購入価格だけでなく、サイズ違い、保管場所、経年劣化まで含めると結論は変わります。何回使えば購入が得になるのか、具体的に計算しました。</p>
+              <span class="read-more">記事を読む</span>
+            </div>
+          </a>
+        </div>
       </section>
     </main>
 
