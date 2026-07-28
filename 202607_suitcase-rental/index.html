@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="スーツケースは買うべきか借りるべきか。サムソナイトの実売価格とレンタル料金から損益分岐を計算し、保管コストまで含めて判断基準を整理する。">
+  <meta name="theme-color" content="#102a2a">
+  <title>スーツケースを買わずに借りている理由</title>
+  <style>
+    :root {
+      --ink: #15201f;
+      --paper: #f4f0e7;
+      --forest: #102a2a;
+      --orange: #e36c38;
+      --teal: #4fa99a;
+      --line: rgba(21, 32, 31, .17);
+      --muted: #66716e;
+      --white: #fffdf8;
+      --shadow: 0 18px 55px rgba(21, 32, 31, .12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 4%, rgba(227, 108, 56, .12), transparent 22rem),
+        var(--paper);
+      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+      line-height: 1.9;
+    }
+    a { color: var(--forest); }
+    .shell { width: min(760px, calc(100% - 40px)); margin-inline: auto; }
+
+    .pr-notice {
+      margin-top: 20px;
+      padding: 9px 14px;
+      background: rgba(21, 32, 31, .06);
+      border-radius: 8px;
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      font-size: .8rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    header.hero { padding-block: 26px 18px; }
+    .kicker {
+      font-size: .74rem;
+      letter-spacing: .08em;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: clamp(1.6rem, 3.2vw, 2.15rem);
+      margin: 0 0 16px;
+      line-height: 1.45;
+    }
+    .lede {
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    article { padding-block: 10px 60px; }
+    h2 {
+      font-size: 1.18rem;
+      margin: 48px 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      line-height: 1.5;
+    }
+    p { margin: 0 0 16px; }
+    ul { margin: 0 0 16px; padding-left: 1.3em; }
+    li { margin-bottom: 8px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+      margin: 0 0 10px;
+      background: var(--white);
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 9px 12px;
+      text-align: left;
+    }
+    th { background: rgba(21, 32, 31, .05); font-weight: 700; }
+    td.num { text-align: right; white-space: nowrap; }
+    .table-wrap { overflow-x: auto; margin-bottom: 18px; }
+    .caption { font-size: .78rem; color: var(--muted); margin: 0 0 22px; }
+
+    .note-box {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--teal);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-size: .92rem;
+      color: var(--muted);
+      margin: 22px 0;
+    }
+    .note-box strong { color: var(--ink); }
+
+    .verdict {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+      margin: 24px 0;
+    }
+    .verdict p:last-child { margin-bottom: 0; }
+
+    .cta {
+      background: var(--forest);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 26px 28px;
+      margin: 32px 0;
+    }
+    .cta h3 { margin: 0 0 10px; font-size: 1.05rem; }
+    .cta p { color: #d8e4e1; margin: 0 0 18px; font-size: .92rem; }
+    .cta a.btn {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .88rem;
+      padding: 12px 24px;
+      border-radius: 999px;
+    }
+    .cta .pending {
+      font-size: .78rem;
+      color: #9db3ae;
+      margin-top: 12px;
+    }
+
+    footer {
+      padding-block: 28px 50px;
+      color: var(--muted);
+      font-size: .82rem;
+      border-top: 1px solid var(--line);
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <a class="back" href="../">← 記事一覧へ</a>
+    <div class="pr-notice">本記事にはアフィリエイトリンクを含みます。</div>
+
+    <header class="hero">
+      <div class="kicker">SUITCASE</div>
+      <h1>スーツケースを買わずに借りている理由</h1>
+      <p class="lede">
+        結論から言うと、買ったほうがいい人は限られています。
+        今後5年10年にわたって海外へ頻繁に行き、しかも毎回だいたい同じ荷物量で済むなら、
+        保証と修理体制のしっかりしたブランドを買うのが確実です。そこは迷う必要がありません。
+        ただし、その条件から一つでも外れると計算が変わります。
+      </p>
+    </header>
+
+    <article>
+
+      <h2>泊数の目安だけではサイズが決まらない</h2>
+      <p>
+        レンタル各社のサイズ目安は、おおむね36Lで1〜3泊、68Lで3〜5泊、94Lで5〜10泊、123L以上で10泊超といったところです。
+        ところが、この目安は実際にはあまり当てになりません。
+      </p>
+      <p>
+        たとえば3泊5日の出張を考えます。現地で洗濯できるなら36Lで足ります。
+        しかし冬の欧州でコートやニットを持っていくなら36Lには収まりません。
+        展示会で資料やサンプルを持ち帰るなら、行きは余裕でも帰りが入らなくなります。
+        同じ日数でも、季節と洗濯の可否と持ち帰る量で必要な容量が変わるということです。
+      </p>
+      <p>
+        1本だけ所有する場合、この幅を1つのサイズで吸収しなければなりません。
+        大きめを買えば、洗濯できる短期出張でも94Lの箱を引きずることになります。
+        小さめを買えば、冬場や展示会帰りで詰められなくなります。
+        <strong>行程ごとに条件を見てサイズを選び直す、という判断そのものができなくなる</strong>のが所有の制約です。
+      </p>
+
+      <h2>サイズを揃えると分岐点が遠のく</h2>
+      <p>
+        では実際に買うといくらかかるのか。サムソナイトのC-Liteで見てみます。
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>モデル</th><th>容量</th><th>重量</th><th class="num">定価(税込)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>C-Lite Spinner 69</td><td>68L</td><td>2.5kg</td><td class="num">¥88,000</td></tr>
+            <tr><td>C-Lite Spinner 86</td><td>144L</td><td>3.6kg</td><td class="num">¥104,500</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">サムソナイト公式オンラインストアの価格(2026-07時点)</p>
+
+      <p>
+        一方、同クラスをレンタルすると10泊で¥6,480です(サムソナイト Cosmolite 94L、Web割10%適用後)。
+        68Lを1本買う¥88,000をこの単価で割ると、分岐点は約14回になります。
+      </p>
+      <p>
+        年8回使うなら2年弱で到達する計算です。この数字だけ見れば買ったほうが安く見えます。
+        ところが前の節のとおり、1本では行程の幅を吸収できません。
+        68Lと144Lの2サイズを揃えれば¥192,500、分岐点は約30回で3年8か月。
+        機内持ち込みサイズを足すと総額は¥26万を超え、分岐点は40回超、5年以上先になります。
+      </p>
+      <p>
+        ここで効いてくるのが、<strong>大きいサイズほど使用頻度が低いのに単価が高い</strong>という逆相関です。
+        144Lを使う行程は年に1〜2回しかないのに、68Lより¥16,500高い。
+        購入では、この最も出番の少ない1本に最も多く払うことになります。
+      </p>
+
+      <h2>置いておくだけで毎年かかる費用</h2>
+      <p>
+        購入価格の比較には、保管の費用が入っていません。
+        94Lサイズは75×51cm。出し入れの余地を含めて約0.25㎡を占有します。
+        家賃を¥2,000/㎡・月と仮定すると、1本あたり年間約¥6,000です。
+      </p>
+      <div class="note-box">
+        <strong>使わなくても、レンタル1回分が毎年消えていく計算です。</strong>
+        3サイズ揃えれば年¥18,000。同じ金額でレンタルなら年3回借りられます。
+      </div>
+      <p>
+        この負担は本体価格と無関係にかかります。
+        ¥15,000の箱でも¥150,000の箱でも、占有する面積は変わりません。
+      </p>
+
+      <h2>たまにしか使わないなら安いのでいい、が成り立たない</h2>
+      <p>
+        イオンや無印には1〜2万円台のスーツケースがあります。
+        レンタル2〜3回分なので、価格だけ見れば買ったほうが安い。
+        よくある助言でもあります。ただし、頻度が低い人にはこれが当てはまりません。
+      </p>
+      <p>
+        樹脂やゴムは使わなくても経年で劣化します。車輪は硬化し、ハンドルやロックの動きは渋くなる。
+        安価な個体は材質のグレードが低い分、この進行が早くなります。
+        結果として、<strong>1年ぶりに引っ張り出したときが最も壊れやすい</strong>という状態になります。
+        使用回数は少ないのに、故障の確率は高い。
+      </p>
+      <p>
+        しかも壊れる場所が問題です。出発前に気づけばまだ手が打てますが、現地で車輪が割れると打つ手がありません。
+        自分の荷物であれば、引きずって帰るしかない。
+      </p>
+      <p>
+        つまり頻度の低い人が安物を買うと、所有のデメリット(場所・経年劣化・肝心なときの故障)だけを負担して、
+        使い込んで元を取るという所有のメリットを受け取れません。
+      </p>
+
+      <h2>結局どう選ぶか</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th></th><th>毎回だいたい同じ荷物量</th><th>行程によって変わる</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>頻繁に行く</th>
+              <td><strong>買う。</strong>5〜10年使うなら、保証と修理体制のあるブランドが確実</td>
+              <td>レンタル</td>
+            </tr>
+            <tr>
+              <th>年に数回</th>
+              <td>レンタル。安物を買うと保管と経年劣化だけを負担する</td>
+              <td>レンタル</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="verdict">
+        <p>
+          買ったほうがいいのは左上の1マスだけです。
+          そしてこの条件に当てはまるなら、安物ではなく保証のしっかりしたものを選ぶべきです。
+          年8回を10年続ければ80回使うことになり、10万円台の本体でも1回あたり¥2,000を切ります。
+          修理を受けながら使い続けられるブランドなら、レンタルより確実に安くなります。
+        </p>
+        <p>
+          自分の場合は右列です。1泊の国内出張から2週間の欧州出張まで幅があり、
+          展示会では資料を持ち帰るので帰りの容量も読めません。だから借りています。
+        </p>
+      </div>
+
+      <h2>期間は前後1日の余裕を取る</h2>
+      <p>
+        レンタルで唯一気をつけているのが日数の取り方です。
+        アールワイレンタルの規約では、発送後の期間延長は原則として認められず、
+        超過はすべて延滞扱いになります(事件・事故・災害・気象条件などを除く)。
+        後から伸ばすという選択肢がありません。
+      </p>
+      <p>
+        一方、予約の時点で日数を長く取るのは10泊を超える分が1泊¥225(Web割適用後)です。
+        出発前日と帰国翌日に1日ずつ余裕を持たせても¥450。
+      </p>
+      <div class="note-box">
+        海外は乗り継ぎの欠航や遅延で帰国が1日ずれることがあります。
+        <strong>その保険が¥450で買えると考えれば安いはずです。</strong>
+      </div>
+
+      <h2>壊れたときは郵送するだけで終わった</h2>
+      <p>
+        一度、車輪が壊れたことがあります。レンタル会社に連絡して、そのまま郵送で返却して終わりました。
+        自分の持ち物なら、修理に出す手間と、次の出張までに間に合うかという心配が発生します。
+        この手間ごと引き受けてもらえる点は、価格表に出てこない利点です。
+      </p>
+
+      <div class="cta">
+        <h3>使っているのはアールワイレンタル</h3>
+        <p>
+          スーツケースレンタルの専門サイトです。サムソナイトやリモワなどのブランドを36Lから123Lまで揃えているので、
+          行程に合わせてサイズを選び直すという使い方ができます。
+        </p>
+        <a class="btn" href="#">アールワイレンタルを見る</a>
+        <div class="pending">※提携審査中のため、リンク先は未設定です</div>
+      </div>
+
+      <h2>JCBカードの優待割引が使える</h2>
+      <p>
+        アールワイレンタルはJCBカードの会員優待の対象です。
+        手元の注文履歴を見ると、2023年12月以降の注文は件名に優待割引の表示が付いています。
+        レンタルを繰り返す前提なら、この割引の有無は無視できない差になります。
+      </p>
+      <p>
+        JAL側のマイルを貯めている場合、JCBカードはメインではなくサブとして持つ形になります。
+        年会費を抑えたグレードでも優待の対象になるかは、申込前に条件を確認してください。
+      </p>
+
+      <div class="cta">
+        <h3>サブカードとしてのJCBカード</h3>
+        <p>レンタル料金の優待割引に加えて、上位グレードでは飲食店やレジャー施設の優待サービスが付帯します。</p>
+        <a class="btn" href="#">JCBカードを見る</a>
+        <div class="pending">※提携審査中のため、リンク先は未設定です</div>
+      </div>
+
+    </article>
+
+    <footer>&copy; 2026</footer>
+  </div>
+</body>
+</html>
