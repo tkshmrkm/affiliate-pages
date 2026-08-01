@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="海外で乗り継ぎ便が崩れたとき、航空会社の手配を待つだけでなく、自分でホテルと空港送迎を押さえる方法。ベルリンで機内2泊した実例をもとに整理する。">
+  <meta name="theme-color" content="#17332f">
+  <title>フライトが崩れた夜、ホテルと空港移動をどう抑えるか</title>
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="フライトが崩れた夜、ホテルと空港移動をどう抑えるか">
+  <meta property="og:description" content="海外で乗り継ぎ便が崩れたとき、航空会社の手配を待つだけでなく、自分でホテルと空港送迎を押さえる方法。ベルリンで機内2泊した実例をもとに整理する。">
+  <meta property="og:image" content="https://tabi-mame.com/202608_flight-disruption-hotel-transfer/flight-disruption-hero.webp">
+  <meta property="og:url" content="https://tabi-mame.com/202608_flight-disruption-hotel-transfer/">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root {
+      --ink: #18211f;
+      --paper: #f4f0e7;
+      --forest: #17332f;
+      --orange: #d95f32;
+      --teal: #4f9b8c;
+      --line: rgba(24, 33, 31, .16);
+      --muted: #68736f;
+      --white: #fffdf8;
+      --serif: "BIZ UDPGothic", "Yu Gothic UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      --sans: "Yu Gothic", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+      --shadow: 0 24px 70px rgba(23, 51, 47, .13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(23, 51, 47, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 51, 47, .025) 1px, transparent 1px),
+        var(--paper);
+      background-size: 32px 32px;
+      font-family: var(--sans);
+      line-height: 1.95;
+    }
+    a { color: var(--forest); }
+    img { max-width: 100%; height: auto; }
+    .shell { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 88px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      text-decoration: none;
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--white);
+      background: var(--orange);
+      font-family: var(--serif);
+      font-size: .82rem;
+      box-shadow: 0 0 0 5px rgba(217, 95, 50, .10);
+    }
+    .site-nav { display: flex; gap: 28px; }
+    .site-nav a { color: var(--muted); font-size: .82rem; text-decoration: none; }
+    .site-nav a:hover { color: var(--ink); }
+
+    .article-page { padding-block: 26px 96px; }
+    .pr-notice {
+      display: inline-block;
+      margin: 0 0 22px;
+      padding: 6px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      font-size: .7rem;
+      letter-spacing: .04em;
+    }
+    .article-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(38px, 7vw, 88px);
+      padding: 12px 0 62px;
+    }
+    .kicker {
+      font-size: .74rem;
+      letter-spacing: .16em;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .article-hero h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(1.85rem, 3vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: .025em;
+    }
+    .article-hero .lede {
+      margin: 24px 0 0;
+      font-size: .98rem;
+      line-height: 1.9;
+      color: var(--muted);
+    }
+    .article-hero .hero-visual {
+      margin: 0;
+      border: 0;
+      border-radius: 3px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .article-hero .hero-visual img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1.91;
+      object-fit: cover;
+    }
+
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 76px;
+      border-block: 1px solid var(--line);
+    }
+    .fact { padding: 24px 28px; }
+    .fact + .fact { border-left: 1px solid var(--line); }
+    .fact-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    .fact strong {
+      display: block;
+      color: var(--forest);
+      font-family: var(--serif);
+      font-size: clamp(1.15rem, 2vw, 1.55rem);
+      line-height: 1.45;
+    }
+    .fact small { color: var(--muted); font-size: .72rem; }
+
+    .article-layout {
+      display: grid;
+      grid-template-columns: 200px minmax(0, 760px);
+      justify-content: center;
+      gap: clamp(42px, 7vw, 92px);
+      align-items: start;
+    }
+    .toc { position: sticky; top: 24px; padding-top: 4px; }
+    .toc-title {
+      margin: 0 0 15px;
+      color: var(--orange);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+    }
+    .toc ol { margin: 0; padding: 0; list-style: none; counter-reset: toc; }
+    .toc li { counter-increment: toc; margin: 0; border-top: 1px solid var(--line); }
+    .toc li:last-child { border-bottom: 1px solid var(--line); }
+    .toc a {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 7px;
+      padding: 10px 0;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .72rem;
+      line-height: 1.55;
+    }
+    .toc a::before { content: counter(toc, decimal-leading-zero); color: var(--orange); }
+    .toc a:hover { color: var(--ink); }
+
+    .article-body { padding: 0; min-width: 0; }
+    .article-body > p:first-child { font-size: 1.05rem; }
+    .article-body h2 {
+      margin: 78px 0 24px;
+      padding: 0 0 14px;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--serif);
+      font-size: clamp(1.45rem, 2.5vw, 2rem);
+      line-height: 1.55;
+      letter-spacing: .02em;
+    }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body p { margin-bottom: 21px; }
+    .article-body ul { margin: 0 0 21px; padding-left: 1.3em; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body strong { color: var(--forest); }
+    .article-body a { text-underline-offset: 4px; }
+    .caption { font-size: .78rem; color: var(--muted); margin-top: 4px; text-align: right; }
+    .note-box {
+      margin: 30px 0;
+      padding: 22px 26px;
+      border: 0;
+      border-left: 4px solid var(--orange);
+      border-radius: 0 3px 3px 0;
+      background: var(--white);
+      box-shadow: 0 12px 34px rgba(21, 32, 31, .07);
+      font-size: .92rem;
+      color: var(--muted);
+    }
+    .note-box strong { color: var(--ink); }
+    .verdict {
+      margin: 32px 0;
+      padding: 28px 32px;
+      border: 1px solid rgba(79, 169, 154, .28);
+      border-radius: 3px;
+      background: linear-gradient(135deg, var(--white), rgba(79, 169, 154, .08));
+      box-shadow: var(--shadow);
+    }
+    .verdict p:last-child { margin-bottom: 0; }
+    .cta {
+      position: relative;
+      overflow: hidden;
+      margin: 38px 0;
+      padding: 32px 34px;
+      border-radius: 3px;
+      background: var(--forest);
+      color: var(--white);
+    }
+    .cta::after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      bottom: -90px;
+      width: 220px;
+      aspect-ratio: 1;
+      border: 34px solid rgba(79, 169, 154, .18);
+      border-radius: 50%;
+    }
+    .cta h3, .cta p, .cta a, .cta .pending { position: relative; z-index: 1; }
+    .cta h3 { margin: 0 0 10px; font-family: var(--serif); font-size: 1.25rem; }
+    .cta p { color: #d8e4e1; margin: 0 0 18px; font-size: .92rem; }
+    .cta a.btn {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .88rem;
+      padding: 12px 24px;
+      border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
+    }
+    .cta.dual { display: grid; gap: 26px; }
+    .cta.dual .item { position: relative; z-index: 1; }
+    .cta.dual .item + .item { border-top: 1px solid rgba(255, 253, 248, .18); padding-top: 24px; }
+    .cta.dual h3 { margin-bottom: 6px; }
+    .cta.dual p { margin-bottom: 14px; }
+
+    .site-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding-block: 30px 48px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+    .site-footer p { margin: 0; }
+
+    @media (max-width: 900px) {
+      .article-hero { grid-template-columns: 1fr; }
+      .article-layout { grid-template-columns: 1fr; }
+      .toc { position: static; width: min(100%, 760px); margin-inline: auto; }
+      .toc ol { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 24px; }
+      .article-body { width: min(100%, 760px); margin-inline: auto; }
+    }
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 28px, 1180px); }
+      .site-header { min-height: 72px; }
+      .site-nav { gap: 14px; }
+      .site-nav a:first-child { display: none; }
+      .article-page { padding-block: 20px 68px; }
+      .article-hero { gap: 34px; padding-bottom: 42px; }
+      .article-hero h1 { font-size: clamp(1.7rem, 8vw, 2.4rem); }
+      .quick-facts { grid-template-columns: 1fr; margin-bottom: 54px; }
+      .fact { padding: 18px 4px; }
+      .fact + .fact { border-left: 0; border-top: 1px solid var(--line); }
+      .toc ol { grid-template-columns: 1fr; }
+      .article-body h2 { margin-top: 58px; }
+      .note-box, .verdict, .cta { margin-inline: -4px; padding: 22px 20px; }
+      .site-footer { flex-direction: column; }
+    }
+  </style>
+  <script src="/ga.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="site-header">
+      <a class="brand" href="../"><span class="brand-mark">豆</span>旅の豆知識</a>
+      <nav class="site-nav" aria-label="サイトメニュー">
+        <a href="../">記事一覧</a>
+        <a href="../about/">運営者情報</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <div class="pr-notice">本記事にはアフィリエイトリンクを含みます</div>
+
+      <header class="article-hero">
+        <div class="article-hero-copy">
+          <div class="kicker">FLIGHT DISRUPTION / TRAVEL</div>
+          <h1>フライトが崩れた夜、ホテルと空港移動をどう抑えるか</h1>
+          <p class="lede">
+            海外出張・旅行で、乗り継ぎ便が崩れることがあります。
+            航空会社の手配を待つだけでは、ホテルの場所も移動の手段も相手任せになります。
+            ベルリンで機内2泊した実例をもとに、自分でも動ける準備をまとめます。
+          </p>
+        </div>
+        <figure class="hero-visual">
+          <img
+            src="flight-disruption-hero.webp"
+            width="1280"
+            height="670"
+            alt="夜の空港で乗り継ぎ便の案内を確認する様子"
+            fetchpriority="high"
+          >
+        </figure>
+      </header>
+
+      <section class="quick-facts" aria-label="記事の要点">
+        <div class="fact"><span class="fact-label">起きたこと</span><strong>機内で2晩</strong><small>ベルリン→ヘルシンキ→シンガポール経由で関空</small></div>
+        <div class="fact"><span class="fact-label">用意する2つ</span><strong>宿と送迎</strong><small>航空会社の手配とは別に、自分でも押さえておく</small></div>
+        <div class="fact"><span class="fact-label">効くタイミング</span><strong>振替便が決まった瞬間</strong><small>機内・空港にいるうちに手配を終える</small></div>
+      </section>
+
+      <div class="article-layout">
+        <aside class="toc" aria-label="目次">
+          <p class="toc-title">CONTENTS</p>
+          <ol>
+            <li><a href="#problem">航空会社の手配を待つだけでは足りない</a></li>
+            <li><a href="#hotel">直前でも空室が見えるホテルアプリ</a></li>
+            <li><a href="#transfer">空港からの移動は事前に手配しておく</a></li>
+            <li><a href="#answer">手配してから動くと、選択の余地が残る</a></li>
+            <li><a href="#train">鉄道や空港連絡バスも選択肢に入れる</a></li>
+            <li><a href="#check">予定通りにいかない前提で、手元に選択肢を持つ</a></li>
+          </ol>
+        </aside>
+
+        <article class="article-body">
+
+      <h2 id="problem">航空会社の手配を待つだけでは足りない</h2>
+      <p>
+        私自身、<a href="https://note.com/tabi_mame_gpt/n/n6af6238355bc" target="_blank" rel="noopener">ベルリンから関空まで、なぜか機内で2泊した</a>ことがあります。
+        原因は空港システムの障害でした。このときは航空会社がホテルを手配してくれましたが、
+        結局そのホテルを使う間もなく次の振替便が決まり、機内で2晩を過ごすことになりました。
+        予定通りにいかない前提で、自分でも動ける準備をしておくべきだったと思っています。
+      </p>
+      <p>
+        乗り継ぎが崩れたとき、多くの場合は航空会社がホテルやバウチャーを手配してくれます。
+        ただ、これには2つの限界があります。
+      </p>
+      <p>
+        1つは、<strong>手配が間に合わない、あるいは途中で変わる</strong>ことです。
+        私の場合、ヘルシンキでホテルを案内されたものの、チェックインする前に振替便の連絡が来て、
+        結局そのホテルは使わずじまいでした。手配された場所と、実際に必要な場所がずれることもあります。
+      </p>
+      <p>
+        もう1つは、<strong>空港からホテルまでの移動が別問題として残る</strong>ことです。
+        深夜に見知らぬ空港へ降り立って、タクシー乗り場を探し、言葉の通じない運転手と行き先を確認する。
+        これ自体が、疲れているときには余計な負担になります。
+      </p>
+      <p>
+        <strong>自分で動ける手段を、事前にスマートフォンへ入れておく。</strong>
+        これが解決策です。具体的には、直前でも予約できるホテルアプリと、事前に手配できる空港送迎の2つです。
+      </p>
+
+      <h2 id="hotel">直前でも空室が見えるホテルアプリ</h2>
+      <p>
+        深夜に予約するとなると、当日空室のある宿を探せるかどうかが分かれ目になります。私が入れているのはアゴダです。
+      </p>
+      <p>
+        国内・海外どちらのホテルも扱っていて、当日・直前の予約に強いという印象があります。
+        振替便の到着時間が深夜になると分かった時点で、到着空港周辺のホテルを検索しておけば、
+        実際に降り立ったときにすぐ予約できます。
+      </p>
+
+      <div class="cta">
+        <h3>直前の宿はアゴダで探す</h3>
+        <p>
+          国内・海外のホテルを幅広く扱う予約サイト。航空会社の手配と条件を比べて、
+          より近い・より早くチェックインできるほうを選べるようにしておくと、無駄な移動が減ります。
+        </p>
+        <a class="btn" href="https://px.a8.net/svt/ejp?a8mat=4B9VHF+E51VHM+4X1W+5YRHE" rel="nofollow noopener" target="_blank">アゴダでホテルを探す</a>
+      </div>
+
+      <h2 id="transfer">空港からの移動は事前に手配しておく</h2>
+      <p>
+        ホテルが決まっても、そこまでの移動が残ります。深夜のタクシー交渉を避けたいときに使っているのがNearMeです。
+      </p>
+      <p>
+        事前にアプリで手配できる空港シャトルサービスで、乗り合いのぶん単独タクシーより安く済むことが多く、
+        運転手を捕まえる手間そのものがなくなります。到着ロビーで慌てて交渉する必要がありません。
+      </p>
+      <p>
+        振替便が決まった時点、つまりまだ機内や空港にいるうちにアプリで予約を済ませておけば、
+        到着後は迎えの車に乗るだけです。
+      </p>
+
+      <div class="cta">
+        <h3>空港送迎はNearMeで予約する</h3>
+        <p>
+          事前予約できる空港シャトルサービス。乗り合いのぶん単独タクシーより安く済むことが多く、
+          到着ロビーでの交渉が要りません。
+        </p>
+        <a class="btn" href="https://px.a8.net/svt/ejp?a8mat=4B9VHF+BETCOA+4Q64+5ZEMQ" rel="nofollow noopener" target="_blank">NearMeで空港送迎を予約する</a>
+      </div>
+
+      <h2 id="answer">手配してから動くと、選択の余地が残る</h2>
+      <p>
+        この2つを事前に入れておくと、何が変わるか。ベルリンのときを振り返ると、選択肢がなかったことが一番の負担でした。
+      </p>
+      <p>
+        航空会社の手配を待つだけの状態だと、示された条件をそのまま受け入れるしかありません。
+        ホテルの場所が不便でも、チェックインできる時間が遅くても、他に比較する材料がないからです。
+      </p>
+      <p>
+        自分でもアゴダとNearMeを開ける状態にしておけば、航空会社の手配と比べて、近いほう・早いほうを選べます。
+        手配が土壇場で変わっても、自分の予約なら自分でキャンセルし直せます。
+        空港からの移動も、着いてから交渉するのではなく、着く前に手配を終えられます。
+      </p>
+      <div class="note-box">
+        <strong>選択肢を自分の手元に持っておく。</strong>
+        それだけで、同じトラブルでも疲労の残り方が変わります。
+      </div>
+
+      <h2 id="train">鉄道や空港連絡バスも選択肢に入れる</h2>
+      <p>
+        行き先によっては、そもそも別の交通機関に乗り換えたほうが早いこともあります。
+        特にヨーロッパ域内では、振替便を待つより鉄道のほうが早く目的地に着くケースもあります。
+      </p>
+      <p>
+        こうした場合はOmioのようなヨーロッパの鉄道・バス・航空券を横断して検索できるサービスが使えます。
+        乗り継ぎが崩れたときの選択肢の1つとして、頭の片隅に入れておくといいと思います。
+      </p>
+
+      <h2 id="check">予定通りにいかない前提で、手元に選択肢を持つ</h2>
+      <p>
+        冒頭に書いたとおり、乗り継ぎ便が崩れると、その場での判断が続きます。
+        航空会社の手配を待つだけでは、ホテルの場所も移動の手段も相手任せになります。
+      </p>
+      <p>
+        アゴダで宿を、NearMeで移動を、それぞれ自分のスマートフォンから直接押さえられる状態にしておく。
+        これだけで、同じトラブルに遭っても動ける選択肢が増えます。
+        予定通りにいかないのは前提として、その先で自分が何を選べるかを、出発前に整えておいてください。
+      </p>
+
+      <div class="verdict">
+        <p>
+          手配を待つだけの状態と、自分でも選べる状態。同じトラブルに遭っても、疲労の残り方がまったく違います。
+          出発前に2つのアプリを入れておくだけで済む備えです。
+        </p>
+      </div>
+
+      <div class="cta dual">
+        <div class="item">
+          <h3>アゴダ</h3>
+          <p>直前でも当日空室のあるホテルを検索できる。国内・海外どちらも対応。</p>
+          <a class="btn" href="https://px.a8.net/svt/ejp?a8mat=4B9VHF+E51VHM+4X1W+5YRHE" rel="nofollow noopener" target="_blank">ホテルを探す</a>
+        </div>
+        <div class="item">
+          <h3>NearMe</h3>
+          <p>空港からの移動を事前予約できるシャトルサービス。到着後は迎えの車に乗るだけ。</p>
+          <a class="btn" href="https://px.a8.net/svt/ejp?a8mat=4B9VHF+BETCOA+4Q64+5ZEMQ" rel="nofollow noopener" target="_blank">送迎を予約する</a>
+        </div>
+      </div>
+
+      <p class="caption">※本記事のエピソードは2025年9月の実体験に基づきます。</p>
+
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 旅の豆知識</p>
+      <p><a href="../about/">運営者情報</a> ・ <a href="../privacy/">プライバシーポリシー</a></p>
+    </footer>
+  </div>
+</body>
+</html>
