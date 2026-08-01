@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="「マルチ対応」と書かれた変換プラグを2つ持っていたのに、オーストラリアで差せなかった話。海外で充電できない4つの原因と、形状をカバーする1つ・差込口を増やす1つの2枚持ちに落ち着くまで。">
+  <meta name="theme-color" content="#17332f">
+  <title>「マルチ対応」の変換プラグを持っていたのに、海外で充電できなかった話</title>
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="「マルチ対応」の変換プラグを持っていたのに、海外で充電できなかった話">
+  <meta property="og:description" content="「マルチ対応」と書かれた変換プラグを2つ持っていたのに、オーストラリアで差せなかった話。海外で充電できない4つの原因と、形状をカバーする1つ・差込口を増やす1つの2枚持ちに落ち着くまで。">
+  <meta property="og:image" content="https://tabi-mame.com/202608_overseas-power-adapter/power-adapter-hero-v2.webp">
+  <meta property="og:url" content="https://tabi-mame.com/202608_overseas-power-adapter/">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root {
+      --ink: #18211f;
+      --paper: #f4f0e7;
+      --forest: #17332f;
+      --orange: #d95f32;
+      --teal: #4f9b8c;
+      --line: rgba(24, 33, 31, .16);
+      --muted: #68736f;
+      --white: #fffdf8;
+      --serif: "BIZ UDPGothic", "Yu Gothic UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      --sans: "Yu Gothic", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+      --shadow: 0 24px 70px rgba(23, 51, 47, .13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(23, 51, 47, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 51, 47, .025) 1px, transparent 1px),
+        var(--paper);
+      background-size: 32px 32px;
+      font-family: var(--sans);
+      line-height: 1.95;
+    }
+    a { color: var(--forest); }
+    img { max-width: 100%; height: auto; }
+    .shell { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 88px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      text-decoration: none;
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--white);
+      background: var(--orange);
+      font-family: var(--serif);
+      font-size: .82rem;
+      box-shadow: 0 0 0 5px rgba(217, 95, 50, .10);
+    }
+    .site-nav { display: flex; gap: 28px; }
+    .site-nav a { color: var(--muted); font-size: .82rem; text-decoration: none; }
+    .site-nav a:hover { color: var(--ink); }
+
+    .article-page { padding-block: 26px 96px; }
+    .pr-notice {
+      display: inline-block;
+      margin: 0 0 22px;
+      padding: 6px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      font-size: .7rem;
+      letter-spacing: .04em;
+    }
+    .article-hero {
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+      align-items: center;
+      gap: clamp(38px, 7vw, 88px);
+      padding: 12px 0 62px;
+    }
+    .kicker {
+      font-size: .74rem;
+      letter-spacing: .16em;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .article-hero h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4.3vw, 4rem);
+      font-weight: 700;
+      line-height: 1.28;
+      letter-spacing: .025em;
+    }
+    .article-hero .lede {
+      margin: 24px 0 0;
+      font-size: .98rem;
+      line-height: 1.9;
+      color: var(--muted);
+    }
+    .article-hero .hero-visual {
+      margin: 0;
+      border: 0;
+      border-radius: 3px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .article-hero .hero-visual img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1.91;
+      object-fit: cover;
+    }
+
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 76px;
+      border-block: 1px solid var(--line);
+    }
+    .fact { padding: 24px 28px; }
+    .fact + .fact { border-left: 1px solid var(--line); }
+    .fact-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    .fact strong {
+      display: block;
+      color: var(--forest);
+      font-family: var(--serif);
+      font-size: clamp(1.15rem, 2vw, 1.55rem);
+      line-height: 1.45;
+    }
+    .fact small { color: var(--muted); font-size: .72rem; }
+
+    .article-layout {
+      display: grid;
+      grid-template-columns: 200px minmax(0, 760px);
+      justify-content: center;
+      gap: clamp(42px, 7vw, 92px);
+      align-items: start;
+    }
+    .toc { position: sticky; top: 24px; padding-top: 4px; }
+    .toc-title {
+      margin: 0 0 15px;
+      color: var(--orange);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+    }
+    .toc ol { margin: 0; padding: 0; list-style: none; counter-reset: toc; }
+    .toc li { counter-increment: toc; margin: 0; border-top: 1px solid var(--line); }
+    .toc li:last-child { border-bottom: 1px solid var(--line); }
+    .toc a {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 7px;
+      padding: 10px 0;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .72rem;
+      line-height: 1.55;
+    }
+    .toc a::before { content: counter(toc, decimal-leading-zero); color: var(--orange); }
+    .toc a:hover { color: var(--ink); }
+
+    .article-body { padding: 0; min-width: 0; }
+    .article-body > p:first-child { font-size: 1.05rem; }
+    .article-body h2 {
+      margin: 78px 0 24px;
+      padding: 0 0 14px;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--serif);
+      font-size: clamp(1.45rem, 2.5vw, 2rem);
+      line-height: 1.55;
+      letter-spacing: .02em;
+    }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body p { margin-bottom: 21px; }
+    .article-body ul { margin: 0 0 21px; padding-left: 1.3em; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body strong { color: var(--forest); }
+    .article-body a { text-underline-offset: 4px; }
+    .caption { font-size: .78rem; color: var(--muted); margin-top: 4px; text-align: right; }
+    .note-box {
+      margin: 30px 0;
+      padding: 22px 26px;
+      border: 0;
+      border-left: 4px solid var(--orange);
+      border-radius: 0 3px 3px 0;
+      background: var(--white);
+      box-shadow: 0 12px 34px rgba(21, 32, 31, .07);
+      font-size: .92rem;
+      color: var(--muted);
+    }
+    .note-box strong { color: var(--ink); }
+    .verdict {
+      margin: 32px 0;
+      padding: 28px 32px;
+      border: 1px solid rgba(79, 169, 154, .28);
+      border-radius: 3px;
+      background: linear-gradient(135deg, var(--white), rgba(79, 169, 154, .08));
+      box-shadow: var(--shadow);
+    }
+    .verdict p:last-child { margin-bottom: 0; }
+    .cta {
+      position: relative;
+      overflow: hidden;
+      margin: 38px 0;
+      padding: 32px 34px;
+      border-radius: 3px;
+      background: var(--forest);
+      color: var(--white);
+    }
+    .cta::after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      bottom: -90px;
+      width: 220px;
+      aspect-ratio: 1;
+      border: 34px solid rgba(79, 169, 154, .18);
+      border-radius: 50%;
+    }
+    .cta h3, .cta p, .cta a, .cta .pending { position: relative; z-index: 1; }
+    .cta h3 { margin: 0 0 10px; font-family: var(--serif); font-size: 1.25rem; }
+    .cta p { color: #d8e4e1; margin: 0 0 18px; font-size: .92rem; }
+    .cta a.btn {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .88rem;
+      padding: 12px 24px;
+      border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
+    }
+    .cta.dual { display: grid; gap: 26px; }
+    .cta.dual .item { position: relative; z-index: 1; }
+    .cta.dual .item + .item { border-top: 1px solid rgba(255, 253, 248, .18); padding-top: 24px; }
+    .cta.dual h3 { margin-bottom: 6px; }
+    .cta.dual p { margin-bottom: 14px; }
+
+    .inline-figure {
+      margin: 26px 0;
+      max-width: 200px;
+    }
+    .inline-figure img {
+      display: block;
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .inline-figure figcaption {
+      margin-top: 8px;
+      font-size: .78rem;
+      color: var(--muted);
+    }
+    @media (max-width: 620px) {
+      .inline-figure { max-width: 150px; }
+    }
+
+    .cause-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 24px;
+      padding: 0;
+      list-style: none;
+    }
+    .cause-list li {
+      margin: 0;
+      padding: 6px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      font-size: .82rem;
+    }
+
+    .site-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding-block: 30px 48px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+    .site-footer p { margin: 0; }
+
+    @media (max-width: 900px) {
+      .article-hero { grid-template-columns: 1fr; }
+      .article-layout { grid-template-columns: 1fr; }
+      .toc { position: static; width: min(100%, 760px); margin-inline: auto; }
+      .toc ol { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 24px; }
+      .article-body { width: min(100%, 760px); margin-inline: auto; }
+    }
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 28px, 1180px); }
+      .site-header { min-height: 72px; }
+      .site-nav { gap: 14px; }
+      .site-nav a:first-child { display: none; }
+      .article-page { padding-block: 20px 68px; }
+      .article-hero { gap: 34px; padding-bottom: 42px; }
+      .article-hero h1 { font-size: clamp(2rem, 10vw, 3rem); }
+      .quick-facts { grid-template-columns: 1fr; margin-bottom: 54px; }
+      .fact { padding: 18px 4px; }
+      .fact + .fact { border-left: 0; border-top: 1px solid var(--line); }
+      .toc ol { grid-template-columns: 1fr; }
+      .article-body h2 { margin-top: 58px; }
+      .note-box, .verdict, .cta { margin-inline: -4px; padding: 22px 20px; }
+      .site-footer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="site-header">
+      <a class="brand" href="../"><span class="brand-mark">豆</span>旅の豆知識</a>
+      <nav class="site-nav" aria-label="サイトメニュー">
+        <a href="../">記事一覧</a>
+        <a href="../about/">運営者情報</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <div class="pr-notice">本記事にはアフィリエイトリンクを含みます</div>
+
+      <header class="article-hero">
+        <div class="article-hero-copy">
+          <div class="kicker">POWER / TRAVEL GEAR</div>
+          <h1>「マルチ対応」の変換プラグを<br>持っていたのに、<br>海外で充電できなかった話</h1>
+          <p class="lede">
+            海外で充電できずに焦る原因は、だいたい決まっています。
+            やっかいなのは、変換プラグを持っていても起きることです。
+            私は「マルチ対応」と書かれた製品を2つ持った状態で、オーストラリアで差せませんでした。
+          </p>
+        </div>
+        <figure class="hero-visual">
+          <img
+            src="power-adapter-hero-v2.webp"
+            width="1280"
+            height="670"
+            alt="海外用の変換プラグとケーブルをポーチの中身ごと並べた様子"
+            fetchpriority="high"
+          >
+        </figure>
+      </header>
+
+      <section class="quick-facts" aria-label="記事の要点">
+        <div class="fact"><span class="fact-label">詰まる原因</span><strong>4つだけ</strong><small>形状・電圧・スイッチ・差込口の数</small></div>
+        <div class="fact"><span class="fact-label">持っていく道具</span><strong>2つに分ける</strong><small>形状をカバーする1つと、口を増やす1つ</small></div>
+        <div class="fact"><span class="fact-label">見るべき数字</span><strong>対応国数ではない</strong><small>プラグ形状の一覧で判断する</small></div>
+      </section>
+
+      <div class="article-layout">
+        <aside class="toc" aria-label="目次">
+          <p class="toc-title">CONTENTS</p>
+          <ol>
+            <li><a href="#gap">「マルチ対応」でも抜けている形状がある</a></li>
+            <li><a href="#answer">役割の違う2つを持つ</a></li>
+            <li><a href="#shape">形状をカバーする1つ</a></li>
+            <li><a href="#ports">口を増やす1つ</a></li>
+            <li><a href="#knowledge">道具では解決しない2つ</a></li>
+            <li><a href="#cable">ケーブルは端子を吸収するものを1本</a></li>
+            <li><a href="#esim">通信も、準備を1つミスると詰む</a></li>
+            <li><a href="#check">出発前に、手持ちを並べて確認する</a></li>
+          </ol>
+        </aside>
+
+        <article class="article-body">
+
+      <h2 id="gap">「マルチ対応」でも抜けている形状がある</h2>
+      <p>
+        プラグの形が合わない、電圧が違う、コンセントのスイッチが入っていない、差込口が足りない。
+        海外で充電できない原因は、この4つでほとんど説明がつきます。
+      </p>
+      <ul class="cause-list">
+        <li>① プラグ形状</li>
+        <li>② 電圧</li>
+        <li>③ コンセントのスイッチ</li>
+        <li>④ 差込口の数</li>
+      </ul>
+      <p>
+        出張前にAnkerのトラベルアダプタを買い足しました。宿のコンセントが足りないことが多かったので、USBポートが付いたものを追加したかったからです。
+      </p>
+      <p>
+        オーストラリア行きの前に確認したら、これがOタイプに対応していませんでした。
+        Oタイプというのは、オーストラリアとニュージーランドで使われている、刃が「ハの字」に開いた形です。
+        搭載されているのはA、C、Gの3種類で、メーカーは200以上の国と地域で使えるとしています。
+        実際その3種類でたいていの国はカバーできますが、スライド式で形を切り替える構造上、刃をハの字に開けません。
+      </p>
+      <p>
+        ついでに予備として置いてあった古い変換プラグも引っ張り出したところ、こちらもOタイプなしでした。
+        「マルチ」と書かれたものを2つ持っていて、2つとも同じ形状が抜けていたわけです。
+      </p>
+      <p>
+        現地で買い足す手も、あまりあてになりませんでした。
+        オーストラリアで探しても、小さく畳める製品は見当たらず、売っているのは箱型の大きいものばかりです。
+        小型の変換プラグは日本の製品のほうがよくできています。
+      </p>
+      <p>
+        <strong>製品を選ぶときに見るのは、対応国数ではなくプラグ形状の一覧です。</strong>
+        「200か国以上」でもOタイプが入っていなければ、オーストラリアでは差せません。
+      </p>
+
+      <h2 id="answer">役割の違う2つを持つ</h2>
+      <p>
+        ここから先が解決策です。結論から書くと、変換プラグは<strong>1つで済ませようとしないほうが早い</strong>という話になりました。
+      </p>
+      <p>求めるものが2つあって、1つの製品では両立しないからです。</p>
+      <ul>
+        <li><strong>形状のカバー範囲</strong> — 行き先のプラグ形状が入っていること。多形状に対応するには、分割・変形する機構が要る</li>
+        <li><strong>差込口の数</strong> — 宿の1口を複数口にすること。USBポートとAC差込口を積むには、本体にある程度の体積が要る</li>
+      </ul>
+      <p>
+        前者を優先すると変形機構にスペースを取られてUSBポートが積めません。
+        後者を優先すると本体が厚くなり、形状の切り替え方式が制限されます。
+        冒頭のAnkerがOタイプを落としたのも、この兼ね合いの結果です。
+      </p>
+      <p>
+        なので、それぞれに特化した2つを持つことにしました。合わせても200g前後で、荷物としては誤差の範囲です。
+      </p>
+
+      <h2 id="shape">形状をカバーする1つ</h2>
+      <p>
+        使っているのはサンワサプライの海外電源変換アダプタ TR-AD4Wです。
+      </p>
+      <p>
+        本体を分割したり合体させたりして形を変えるタイプで、A、B、BF、B3、C、SE、O、O2、CBの9種類に変換できます。
+        メーカーの製品ページでは158か国対応とされています。重さは55g、厚さは16.5mmです。
+      </p>
+      <p>
+        欧州、シンガポール、中国、オーストラリアと、行った先ではどこでも使えました。
+        Oタイプが最初から入っているので、オーストラリアでも何も考えずに差せます。
+      </p>
+      <p>
+        これは宿に置かず、外出時のポーチに常に入れています。
+        空港のラウンジや待合、それから機内の座席では、日本と同じタイプAの差込口がまだかなり残っているからです。
+        逆に言うと、電源はあるのにプラグが合わないという状況は、空港の外に出ると普通に起きます。
+        55gのものを1つ入れておくだけで、この差が埋まります。
+      </p>
+
+      <div class="cta">
+        <h3>形状のカバーはこれ1つ</h3>
+        <p>
+          サンワサプライ TR-AD4W。9種類のプラグ形状に変形し、オーストラリアのOタイプにも対応します。
+          重さ55g、厚さ16.5mm。メーカー標準価格は¥3,850(税込)です。
+        </p>
+        <!-- サンワダイレクト提携が通ったら、そのMyLinkに差し替える -->
+
+        <a class="btn" href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3777212&pid=892670807" rel="nofollow noopener" target="_blank">Yahoo!ショッピングで探す</a>
+      </div>
+
+      <h2 id="ports">口を増やす1つ</h2>
+      <p>
+        宿の部屋にコンセントが1口しかない、ということは普通にあります。
+        そこにスマホ、仕事用のスマホ、PC、モバイルバッテリー、ワイヤレスイヤホンと並ぶので、
+        形を変えるだけのアダプタでは1台ぶんしか埋まりません。
+      </p>
+      <p>
+        ここで効くのが、冒頭でOタイプ非対応だったAnkerのトラベルアダプタです。オーストラリア以外では、これがよくできています。
+      </p>
+      <p>
+        USB-Cが2つ、USB-Aが2つ、そこにAC差込口が1つ付いていて、合わせて5台まで同時に給電できます。
+        宿のコンセント1口が、そのまま5口になります。AC側は8Aまで使えるので、PCの純正充電器はここに差せます。
+      </p>
+      <p>
+        出力はUSB-C1が単独で最大20W、USB-C2が15W、USB-A各ポートが12Wです。
+        複数ポートを同時に使うと合計15Wに制限されるので、スマホやイヤホンを一晩かけて充電する用途と割り切るのが正解です。
+        PCを急いで充電したいときは、AC側へ自分の充電器を差すほうが早くなります。
+      </p>
+      <p>
+        プラグの切り替えは側面のレバーをスライドさせるだけで、分解も組み立ても要りません。
+        本体は約86×51×31mmで、一般的なトラベルアダプタより約30%小さいとされています。
+        PSE認証を取得していて、8A以上の過電流を検知するとAC差込口の電源を自動で切る仕組みも入っています。
+      </p>
+
+      <div class="cta">
+        <h3>差込口を増やすのはこれ1つ</h3>
+        <p>
+          Anker Nano トラベルアダプタ (5-in-1, 20W)。宿のコンセント1口を5口にします。
+          公式ストアは4,000円以上で送料無料、会員登録すると保証期間が6ヶ月延長されます。
+        </p>
+        <a class="btn" href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3777212&pid=892670765" rel="nofollow noopener" target="_blank">Anker公式オンラインストアで見る</a>
+      </div>
+
+      <h2 id="knowledge">道具では解決しない2つ</h2>
+      <p>
+        冒頭に挙げた4つの原因のうち、残りの2つは買い物では片づきません。知っているかどうかだけの話です。
+      </p>
+      <p>
+        <strong>電圧は変換プラグでは変わりません。</strong>
+        変換プラグはプラグの形を合わせるだけの部品です。TR-AD4Wにも変圧機能はなく、許容容量が6A 250Vと表示されているだけです。
+        日本は100V、欧州やオーストラリアは230V前後、アメリカは120Vです。
+        スマホとPCの充電器は入力が100〜240Vに対応している製品がほとんどなので、形さえ合えばそのまま使えます。
+        手元の充電器のラベルに「INPUT 100-240V」と書いてあるか、出発前に見ておいてください。
+        気をつけたいのはヘアドライヤーやヘアアイロンで、日本国内向けの100V専用モデルを230Vの国で差すと壊れます。
+      </p>
+      <p>
+        <strong>差したのに充電されないときは、コンセントのスイッチです。</strong>
+        オーストラリアのコンセントには、差込口ごとにON/OFFのスイッチが付いていることが多くあります。
+        イギリスやシンガポールなど、BFタイプを使う国でも同じです。
+        日本のコンセントは差せば通電するのが当たり前なので、初めてだとまず疑いません。
+        やることは、差込口の横にある小さなスイッチを押すだけです。
+      </p>
+      <div class="note-box">
+        同じ症状で紛らわしいのが、ヨーロッパのホテルによくある<strong>カードキー式のホルダー</strong>です。
+        部屋の入り口にあるスロットへカードを差さないと、部屋全体の電源が落ちたままになります。
+        外出中に充電しておいたつもりが、帰ってきたら残量が減っていない、というのはこれが原因です。
+      </div>
+
+      <h2 id="cable">ケーブルは端子を吸収するものを1本</h2>
+      <p>
+        ポーチにはもう1つ、<a href="https://www.amazon.co.jp/dp/B09NQ564TQ?tag=tabimamegpt-22" rel="nofollow noopener" target="_blank">入力にType-AとType-Cのどちらも使える3in1ケーブル</a>を入れています。
+        出力側が3つに分かれているので、これ1本で自分のスマホと仕事用のスマホを同時に充電できます。
+        差込口が1つしかない席でも困りません。
+      </p>
+      <p>
+        仕事用のiPhoneがSE(第3世代)でLightning端子なので、Lightningが1本に含まれているケーブルが重宝しています。
+        最近はmicro USBを使う機会がほとんどなくなりましたが、必要になったときは
+        <a href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3777212&pid=892670788" rel="nofollow noopener" target="_blank">エレコムのType-Cからmicro Bへの変換アダプタ</a>
+        をかぶせて対応しています。
+      </p>
+
+      <h2 id="esim">通信も、準備を1つミスると詰む</h2>
+      <p>
+        電源と並んで海外で詰まりやすいのが通信です。
+        こちらもeSIMを1つ用意しておけば、現地で買い直す必要がなくなります。
+        買ったQRコードをその場で相手のスマホに読ませるだけで共有できるので、同行者や家族の分もまとめて面倒を見られます。
+      </p>
+      <p>
+        詳しくは<a href="../202607_airalo-esim/">海外出張・旅行でAiraloのeSIMを使っている理由</a>にまとめました。
+      </p>
+
+      <h2 id="check">出発前に、手持ちを並べて確認する</h2>
+      <p>
+        2つ持ちに変えてから、電源で困ることはなくなりました。
+        形状はTR-AD4Wが引き受け、口数はAnkerが引き受ける。
+        役割が分かれているので、どちらか1つに減らす判断にはなりませんでした。
+      </p>
+      <p>
+        そのうえで、出発前に必ずやることが1つあります。
+        <strong>手持ちの変換プラグを全部並べて、行き先の形状が入っているかを確認する</strong>ことです。
+      </p>
+
+      <div class="verdict">
+        <p>
+          私が失敗したのは、2つ持っていたのに2つとも同じ形状が抜けていたからでした。
+          数を増やしても、同じ製品系統で揃えると穴は埋まりません。
+          予備を含めて、対応形状が偏っていないかを見てください。それだけで、この記事に書いた失敗は避けられます。
+        </p>
+      </div>
+
+      <div class="cta dual">
+        <div class="item">
+          <h3>サンワサプライ TR-AD4W</h3>
+          <p>
+            9種類のプラグ形状に変形。Oタイプ対応。55g、厚さ16.5mm。形状のカバー担当。
+          </p>
+          <a class="btn" href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3777212&pid=892670807" rel="nofollow noopener" target="_blank">Yahoo!ショッピングで探す</a>
+        </div>
+        <div class="item">
+          <h3>Anker Nano トラベルアダプタ (5-in-1, 20W)</h3>
+          <p>
+            USB-C×2、USB-A×2、AC差込口×1で5台同時。約86×51×31mm、PSE認証取得。Oタイプ非対応。差込口を増やす担当。
+          </p>
+          <a class="btn" href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3777212&pid=892670765" rel="nofollow noopener" target="_blank">Anker公式オンラインストアで見る</a>
+        </div>
+      </div>
+
+      <p class="caption">※製品仕様は2026-08-01時点でメーカーの製品ページを確認した内容です。購入前に最新の仕様をご確認ください。</p>
+
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 旅の豆知識</p>
+      <p><a href="../about/">運営者情報</a> ・ <a href="../privacy/">プライバシーポリシー</a></p>
+    </footer>
+  </div>
+</body>
+</html>
