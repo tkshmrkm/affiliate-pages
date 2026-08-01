@@ -2,9 +2,7 @@
 // analytics.google.com でプロパティを作成すると測定ID(G-XXXXXXXXXX)が発行される。
 // 発行されたら、下の GA_MEASUREMENT_ID だけ書き換える。各ページの<head>を編集する必要はない。
 (function () {
-  var GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // TODO: 発行された測定IDに置き換える
-
-  if (GA_MEASUREMENT_ID.indexOf('XXXXXXXXXX') !== -1) return; // 未設定の間は何も送信しない
+  var GA_MEASUREMENT_ID = 'G-V2FT8MEWKN';
 
   var s = document.createElement('script');
   s.async = true;
