@@ -319,6 +319,49 @@
       .toc ol { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 24px; }
       .article-body { width: min(100%, 760px); margin-inline: auto; }
     }
+
+    .related {
+      margin-top: 46px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+    }
+    .related-title {
+      margin: 0 0 15px;
+      color: var(--orange);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+    }
+    .related ul {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    .related li {
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+    .related li:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+    .related li a {
+      display: block;
+      font-family: var(--serif);
+      color: var(--forest);
+      font-size: 1rem;
+      text-decoration: none;
+      text-underline-offset: 4px;
+    }
+    .related li a:hover {
+      text-decoration: underline;
+    }
+    .related li span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
     @media (max-width: 620px) {
       .shell { width: min(100% - 28px, 1180px); }
       .site-header { min-height: 72px; }
@@ -622,6 +665,20 @@
       </div>
 
       <p class="caption">※積算率、LSPの対象条件、各予約サイトの特典は、じゃらんnetが2026年8月4日、楽天トラベルが2026年7月27日時点で確認した内容です。キャンペーンや対象条件は変わるため、予約前にJALマイレージパークと各予約サイトの最新案内をご確認ください。</p>
+
+      <aside class="related" aria-label="関連記事">
+        <p class="related-title">この記事を読んだ人は</p>
+        <ul>
+          <li>
+            <a href="../202608_flight-disruption-hotel-transfer/">フライトが崩れた夜、ホテルと空港移動をどう抑えるか</a>
+            <span>乗り継ぎ便が崩れた夜、自分でホテルと送迎を手配する方法</span>
+          </li>
+          <li>
+            <a href="../202607_suitcase-rental/">スーツケースを買わずに借りている理由</a>
+            <span>スーツケースは買うかレンタルか、価格差から出す損益分岐点</span>
+          </li>
+        </ul>
+      </aside>
 
         </article>
       </div>

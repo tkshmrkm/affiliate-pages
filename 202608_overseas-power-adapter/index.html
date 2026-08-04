@@ -318,6 +318,49 @@
       .toc ol { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 24px; }
       .article-body { width: min(100%, 760px); margin-inline: auto; }
     }
+
+    .related {
+      margin-top: 46px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+    }
+    .related-title {
+      margin: 0 0 15px;
+      color: var(--orange);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+    }
+    .related ul {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    .related li {
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+    .related li:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+    .related li a {
+      display: block;
+      font-family: var(--serif);
+      color: var(--forest);
+      font-size: 1rem;
+      text-decoration: none;
+      text-underline-offset: 4px;
+    }
+    .related li a:hover {
+      text-decoration: underline;
+    }
+    .related li span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
     @media (max-width: 620px) {
       .shell { width: min(100% - 28px, 1180px); }
       .site-header { min-height: 72px; }
@@ -594,6 +637,20 @@
       </div>
 
       <p class="caption">※製品仕様は2026-08-01時点でメーカーの製品ページを確認した内容です。購入前に最新の仕様をご確認ください。</p>
+
+      <aside class="related" aria-label="関連記事">
+        <p class="related-title">この記事を読んだ人は</p>
+        <ul>
+          <li>
+            <a href="../202607_airalo-esim/">海外出張・旅行でAiraloのeSIMを使っている理由</a>
+            <span>eSIMのAiraloに切り替えた理由と設定手順、プランの選び方</span>
+          </li>
+          <li>
+            <a href="../202607_suitcase-rental/">スーツケースを買わずに借りている理由</a>
+            <span>スーツケースは買うかレンタルか、価格差から出す損益分岐点</span>
+          </li>
+        </ul>
+      </aside>
 
         </article>
       </div>
