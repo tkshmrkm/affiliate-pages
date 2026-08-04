@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="海外出張中にホテルのWi-Fiから証券口座や銀行にログインしていいのか。公共Wi-Fiの実際のリスク、VPNができること・できないこと、マレーシア出張後に届いた認証通知の話まで、僕が実際にやっている対策を整理しました。">
+  <meta name="theme-color" content="#17332f">
+  <title>海外出張でVPNは必要か。ホテルWi-Fiから証券口座にログインする前に決めておくこと</title>
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="海外出張でVPNは必要か。ホテルWi-Fiから証券口座にログインする前に決めておくこと">
+  <meta property="og:description" content="海外出張中にホテルのWi-Fiから証券口座や銀行にログインしていいのか。公共Wi-Fiの実際のリスク、VPNができること・できないこと、マレーシア出張後に届いた認証通知の話まで、僕が実際にやっている対策を整理しました。">
+  <meta property="og:image" content="https://tabi-mame.com/202608_overseas-vpn-nordvpn/vpn-security-hero.webp">
+  <meta property="og:url" content="https://tabi-mame.com/202608_overseas-vpn-nordvpn/">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- 【本公開時に削除】NordVPNの事前承認を待つ間だけ検索避けを入れている。承認が下りたらこの meta ごと削除し、
+       同時にトップページの記事一覧カードと sitemap.xml の追加分を push する -->
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root {
+      --ink: #18211f;
+      --paper: #f4f0e7;
+      --forest: #17332f;
+      --orange: #d95f32;
+      --teal: #4f9b8c;
+      --line: rgba(24, 33, 31, .16);
+      --muted: #68736f;
+      --white: #fffdf8;
+      --serif: "BIZ UDPGothic", "Yu Gothic UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      --sans: "Yu Gothic", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+      --shadow: 0 24px 70px rgba(23, 51, 47, .13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(23, 51, 47, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 51, 47, .025) 1px, transparent 1px),
+        var(--paper);
+      background-size: 32px 32px;
+      font-family: var(--sans);
+      line-height: 1.95;
+    }
+    a { color: var(--forest); }
+    img { max-width: 100%; height: auto; }
+    .shell { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 88px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      text-decoration: none;
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--white);
+      background: var(--orange);
+      font-family: var(--serif);
+      font-size: .82rem;
+      box-shadow: 0 0 0 5px rgba(217, 95, 50, .10);
+    }
+    .site-nav { display: flex; gap: 28px; }
+    .site-nav a { color: var(--muted); font-size: .82rem; text-decoration: none; }
+    .site-nav a:hover { color: var(--ink); }
+
+    .article-page { padding-block: 26px 96px; }
+    .pr-notice {
+      display: inline-block;
+      margin: 0 0 22px;
+      padding: 6px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      font-size: .7rem;
+      letter-spacing: .04em;
+    }
+    .article-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(38px, 7vw, 88px);
+      padding: 12px 0 62px;
+    }
+    .kicker {
+      font-size: .74rem;
+      letter-spacing: .16em;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .article-hero h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(1.85rem, 3vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: .025em;
+    }
+    .article-hero .lede {
+      margin: 24px 0 0;
+      font-size: .98rem;
+      line-height: 1.9;
+      color: var(--muted);
+    }
+    .article-hero .hero-visual {
+      margin: 0;
+      border: 0;
+      border-radius: 3px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .article-hero .hero-visual img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1.91;
+      object-fit: cover;
+    }
+
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 76px;
+      border-block: 1px solid var(--line);
+    }
+    .fact { padding: 24px 28px; }
+    .fact + .fact { border-left: 1px solid var(--line); }
+    .fact-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    .fact strong {
+      display: block;
+      color: var(--forest);
+      font-family: var(--serif);
+      font-size: clamp(1.15rem, 2vw, 1.55rem);
+      line-height: 1.45;
+    }
+    .fact small { color: var(--muted); font-size: .72rem; }
+
+    .article-layout {
+      display: grid;
+      grid-template-columns: 200px minmax(0, 760px);
+      justify-content: center;
+      gap: clamp(42px, 7vw, 92px);
+      align-items: start;
+    }
+    .toc { position: sticky; top: 24px; padding-top: 4px; }
+    .toc-title {
+      margin: 0 0 15px;
+      color: var(--orange);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+    }
+    .toc ol { margin: 0; padding: 0; list-style: none; counter-reset: toc; }
+    .toc li { counter-increment: toc; margin: 0; border-top: 1px solid var(--line); }
+    .toc li:last-child { border-bottom: 1px solid var(--line); }
+    .toc a {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 7px;
+      padding: 10px 0;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .72rem;
+      line-height: 1.55;
+    }
+    .toc a::before { content: counter(toc, decimal-leading-zero); color: var(--orange); }
+    .toc a:hover { color: var(--ink); }
+
+    .article-body { padding: 0; min-width: 0; }
+    .article-body > p:first-child { font-size: 1.05rem; }
+    .article-body h2 {
+      margin: 78px 0 24px;
+      padding: 0 0 14px;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--serif);
+      font-size: clamp(1.45rem, 2.5vw, 2rem);
+      line-height: 1.55;
+      letter-spacing: .02em;
+    }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body p { margin-bottom: 21px; }
+    .article-body ul { margin: 0 0 21px; padding-left: 1.3em; }
+    .article-body ol { margin: 0 0 21px; padding-left: 1.3em; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body strong { color: var(--forest); }
+    .article-body a { text-underline-offset: 4px; }
+    .caption { font-size: .78rem; color: var(--muted); margin-top: 4px; text-align: right; }
+    .note-box {
+      margin: 30px 0;
+      padding: 22px 26px;
+      border: 0;
+      border-left: 4px solid var(--orange);
+      border-radius: 0 3px 3px 0;
+      background: var(--white);
+      box-shadow: 0 12px 34px rgba(21, 32, 31, .07);
+      font-size: .92rem;
+      color: var(--muted);
+    }
+    .note-box strong { color: var(--ink); }
+    .verdict {
+      margin: 32px 0;
+      padding: 28px 32px;
+      border: 1px solid rgba(79, 169, 154, .28);
+      border-radius: 3px;
+      background: linear-gradient(135deg, var(--white), rgba(79, 169, 154, .08));
+      box-shadow: var(--shadow);
+    }
+    .verdict p:last-child { margin-bottom: 0; }
+    .cta {
+      position: relative;
+      overflow: hidden;
+      margin: 38px 0;
+      padding: 32px 34px;
+      border-radius: 3px;
+      background: var(--forest);
+      color: var(--white);
+    }
+    .cta::after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      bottom: -90px;
+      width: 220px;
+      aspect-ratio: 1;
+      border: 34px solid rgba(79, 169, 154, .18);
+      border-radius: 50%;
+    }
+    .cta h3, .cta p, .cta a, .cta .pending { position: relative; z-index: 1; }
+    .cta h3 { margin: 0 0 10px; font-family: var(--serif); font-size: 1.25rem; }
+    .cta p { color: #d8e4e1; margin: 0 0 18px; font-size: .92rem; }
+    .cta a.btn {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .88rem;
+      padding: 12px 24px;
+      border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
+    }
+    .cta.dual { display: grid; gap: 26px; }
+    .cta.dual .item { position: relative; z-index: 1; }
+    .cta.dual .item + .item { border-top: 1px solid rgba(255, 253, 248, .18); padding-top: 24px; }
+    .cta.dual h3 { margin-bottom: 6px; }
+    .cta.dual p { margin-bottom: 14px; }
+
+    .inline-figure {
+      margin: 26px 0;
+      max-width: 200px;
+    }
+    .inline-figure img {
+      display: block;
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .inline-figure figcaption {
+      margin-top: 8px;
+      font-size: .78rem;
+      color: var(--muted);
+    }
+    @media (max-width: 620px) {
+      .inline-figure { max-width: 150px; }
+    }
+
+    .cause-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 24px;
+      padding: 0;
+      list-style: none;
+    }
+    .cause-list li {
+      margin: 0;
+      padding: 6px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      font-size: .82rem;
+    }
+
+    .site-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding-block: 30px 48px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+    .site-footer p { margin: 0; }
+
+    @media (max-width: 900px) {
+      .article-hero { grid-template-columns: 1fr; }
+      .article-layout { grid-template-columns: 1fr; }
+      .toc { position: static; width: min(100%, 760px); margin-inline: auto; }
+      .toc ol { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 24px; }
+      .article-body { width: min(100%, 760px); margin-inline: auto; }
+    }
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 28px, 1180px); }
+      .site-header { min-height: 72px; }
+      .site-nav { gap: 14px; }
+      .site-nav a:first-child { display: none; }
+      .article-page { padding-block: 20px 68px; }
+      .article-hero { gap: 34px; padding-bottom: 42px; }
+      .article-hero h1 { font-size: clamp(1.7rem, 8vw, 2.4rem); }
+      .quick-facts { grid-template-columns: 1fr; margin-bottom: 54px; }
+      .fact { padding: 18px 4px; }
+      .fact + .fact { border-left: 0; border-top: 1px solid var(--line); }
+      .toc ol { grid-template-columns: 1fr; }
+      .article-body h2 { margin-top: 58px; }
+      .note-box, .verdict, .cta { margin-inline: -4px; padding: 22px 20px; }
+      .site-footer { flex-direction: column; }
+    }
+  </style>
+  <script src="/ga.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="site-header">
+      <a class="brand" href="../"><span class="brand-mark">豆</span>旅の豆知識</a>
+      <nav class="site-nav" aria-label="サイトメニュー">
+        <a href="../">記事一覧</a>
+        <a href="../about/">運営者情報</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <div class="pr-notice">本記事にはアフィリエイトリンクを含みます</div>
+
+      <header class="article-hero">
+        <div class="article-hero-copy">
+          <div class="kicker">VPN / SECURITY</div>
+          <h1>海外出張でVPNは必要か。ホテルWi-Fiから証券口座にログインする前に決めておくこと</h1>
+          <p class="lede">
+            出張先のホテルで、その日の株価を見る。ついでに残高も確認する。
+            そのとき使っているのは、誰が管理しているのかよく分からないWi-Fiです。
+            この状態でいいのかを、一度きちんと整理しました。
+          </p>
+        </div>
+        <figure class="hero-visual">
+          <!-- 未作成: ヒーロー画像。GPTで生成して 202608_overseas-vpn-nordvpn/vpn-security-hero.webp に保存する -->
+          <img
+            src="vpn-security-hero.webp"
+            width="1280"
+            height="670"
+            alt="ホテルの客室のデスクでノートPCとスマートフォンを開き、Wi-Fiの接続先と金融サービスのログイン画面を確認している様子"
+            fetchpriority="high"
+          >
+        </figure>
+      </header>
+
+      <section class="quick-facts" aria-label="記事の要点">
+        <div class="fact"><span class="fact-label">公共Wi-Fiのリスク</span><strong>2種類ある</strong><small>盗聴のリスクと、なりすましサイトのリスク</small></div>
+        <div class="fact"><span class="fact-label">VPNの役割</span><strong>通信の経路だけ</strong><small>偽サイトへの入力や端末の汚染は防げない</small></div>
+        <div class="fact"><span class="fact-label">組み合わせるもの</span><strong>3つ</strong><small>VPN・二段階認証・パスワード管理</small></div>
+      </section>
+
+      <div class="article-layout">
+        <aside class="toc" aria-label="目次">
+          <p class="toc-title">CONTENTS</p>
+          <ol>
+            <li><a href="#why">海外にいても口座を見るようになった</a></li>
+            <li><a href="#publicwifi">公共Wi-Fiは「絶対に危険」ではない</a></li>
+            <li><a href="#scope">VPNは何をして、何をしないか</a></li>
+            <li><a href="#nordvpn">NordVPNを使っている理由</a></li>
+            <li><a href="#home">旅行先でも普段の環境で使える</a></li>
+            <li><a href="#malaysia">マレーシア出張後に届いた認証通知</a></li>
+            <li><a href="#password">パスワードを使い回さない</a></li>
+            <li><a href="#plans">プランによってNordPassの有無が違う</a></li>
+            <li><a href="#checklist">VPNだけに頼らない</a></li>
+          </ol>
+        </aside>
+
+        <article class="article-body">
+
+      <h2 id="why">海外にいても口座を見るようになった</h2>
+      <p>
+        新NISAが始まってから、投資に回すお金の割合が増えました。
+        それにともなって、相場を見る回数も増えています。
+        以前は出張中に口座を開くことなどほとんどありませんでしたが、今は移動の合間やホテルの部屋で、その日の値段を確認するのが普通になりました。
+      </p>
+      <p>
+        証券会社のアプリを開く。ネット銀行にログインして入出金を確認する。
+        クレジットカードの利用明細に見慣れない決済がないかを見る。
+        国内でやっていることを、そのまま海外でもやっているだけです。
+      </p>
+      <p>
+        気になるのは回線のほうです。
+        国内なら自宅の回線か自分の携帯回線しか使いませんが、海外だとホテルのWi-Fi、空港のWi-Fi、カフェのWi-Fiと、他人が用意した回線に繋ぐ機会が一気に増えます。
+        <strong>そこから金融サービスにログインしていいのか</strong>という点を、出発前に決めておきたいというのがこの記事の出発点です。
+      </p>
+
+      <h2 id="publicwifi">公共Wi-Fiは「絶対に危険」ではない</h2>
+      <p>
+        先に、煽らない側の話から書きます。
+      </p>
+      <p>
+        米国の連邦取引委員会(FTC)は、消費者向けの記事
+        <a href="https://consumer.ftc.gov/are-public-wi-fi-networks-safe-what-you-need-know" rel="noopener" target="_blank">Are Public Wi-Fi Networks Safe? What You Need To Know</a>
+        の中で、公共Wi-Fiの位置づけをはっきり書き換えています。
+        趣旨としては、かつては多くのサイトが暗号化を使っておらず公共Wi-Fiの利用は危険だったが、今はほとんどのサイトが暗号化を使うようになったので、公共Wi-Fiでの接続は通常は安全である、という内容です。
+      </p>
+      <p>
+        つまり「公共Wi-Fiに繋いだら通信の中身が丸見え」という前提は、今のインターネットでは当てはまりにくくなっています。
+        この点だけを取り出せば、ホテルのWi-Fiで残高を見ること自体を過度に怖がる必要はありません。
+      </p>
+      <p>
+        ただし、話はそこで終わりません。
+        <strong>同じFTCの記事には、詐欺サイトも暗号化(https)を使うことがある、とも書かれています。</strong>
+        鍵マークが付いていることは「通信が暗号化されている」ことの証拠であって、「その相手が本物である」ことの証拠ではないからです。
+      </p>
+      <p>
+        整理すると、リスクは二段構えです。
+        <strong>通信を盗み見られるリスクは下がった。けれども、偽物のサイトや偽物のアクセスポイントに誘導されるリスクは、それとは別に残っている。</strong>
+        後者は暗号化では解決しません。
+      </p>
+      <p>
+        そのうえで、僕が海外で気をつけるようにしているのは次のようなケースです。
+      </p>
+      <ul>
+        <li>ホテル名に似せた、正体の分からないSSIDが並んでいるとき</li>
+        <li>パスワードなしで誰でも繋がるフリーWi-Fi</li>
+        <li>正式な接続先かどうかを自分で判断できないアクセスポイント</li>
+        <li>普段と違う国、普段と違う端末から金融サービスにログインするとき</li>
+      </ul>
+      <p>
+        FTCが勧めているのは、鍵マークとhttpsの確認、強いパスワードと二段階認証、そしてOS・ブラウザ・セキュリティソフトを最新に保つことです。
+        日本でも総務省が
+        <a href="https://www.soumu.go.jp/main_sosiki/cybersecurity/wi-fi/" rel="noopener" target="_blank">公衆無線LAN(Wi-Fi)のセキュリティに関する注意喚起</a>
+        を出しています。特別な話ではなく、基本の積み重ねという扱いです。
+      </p>
+
+      <h2 id="scope">VPNは何をして、何をしないか</h2>
+      <p>
+        VPNを使うと何が変わるのか。ここを曖昧にしたまま契約すると、期待外れになるか、逆に安心しすぎることになります。
+      </p>
+      <p>
+        <strong>VPNがすることは、大きく2つです。</strong>
+      </p>
+      <ul>
+        <li><strong>端末とVPNサーバーの間の通信が暗号化される</strong> — 同じネットワークに繋がっている他人や、そのネットワークを管理している側から、通信の中身や接続先が見えにくくなります</li>
+        <li><strong>接続先のサービスから見えるIPアドレスが変わる</strong> — 相手側からは、自分が実際に使っている回線ではなく、VPNサーバーのIPアドレスが見えます</li>
+      </ul>
+      <p>
+        一方で、<strong>VPNではどうにもならないこともあります。</strong>
+        こちらのほうが大事なので、同じ場所に並べておきます。
+      </p>
+      <ul>
+        <li><strong>偽サイトに自分でパスワードを入力すれば、その情報はそのまま相手に渡ります。</strong>通信経路が暗号化されていても、届け先が偽物なら意味がありません</li>
+        <li><strong>端末そのものがマルウェアに感染している場合</strong>、通信を暗号化しても、入力した内容は端末側で抜かれます</li>
+        <li><strong>他のサービスからの情報漏えい</strong>で自分のIDとパスワードが出回っている場合、VPNは何の関係もありません</li>
+      </ul>
+      <p>
+        だからVPNは、それ単体で身を守る道具ではありません。
+        <strong>二段階認証やパスワード管理と組み合わせて、はじめて意味が出てくる道具</strong>だと考えています。
+        言い換えると、VPNを入れたからパスワードは適当でいい、という使い方は成り立ちません。
+      </p>
+
+      <h2 id="nordvpn">NordVPNを使っている理由</h2>
+      <p>
+        僕は実際にNordVPNを契約していて、海外出張のときに使っています。
+        選んだ理由は難しいものではなく、アプリを開いて国を選ぶだけで使えることと、スマホとPCの両方に同じ契約で入れられることです。
+      </p>
+      <p>
+        <a href="https://nordvpn.com/ja/features/" rel="nofollow noopener" target="_blank">公式の機能ページ</a>で確認できる範囲だと、
+        実際に使っていて効いていると感じるのは次のあたりです。
+      </p>
+      <ul>
+        <li><strong>1契約で最大10台まで同時接続できる</strong> — 個人のスマホ、仕事以外で使うPC、タブレットと、持っていく端末をまとめてカバーできます。出張のたびに接続台数を気にせずに済むのは地味に大きいです</li>
+        <li><strong>224か所のロケーションに数千台のサーバーがある</strong> — 混んでいるときに別のサーバーへ切り替えられます。なお、これはロケーション(拠点)の数であって国の数ではありません</li>
+        <li><strong>NordLynxプロトコル</strong> — WireGuardをベースにした接続方式です。ホテルの回線が細いときほど、接続方式による差を感じます</li>
+        <li><strong>「次世代のウイルス対策」</strong> — 詐欺サイトの警告、マルウェアに感染したファイルをダウンロード前に削除する機能、トラッカーや広告のブロック、フィッシング対策が含まれます。前の節で書いた「VPNだけでは偽サイトを防げない」という穴を、別の層で埋めにいく機能です</li>
+        <li><strong>Kill Switch</strong> — VPN接続が切れたときに、インターネットへのアクセスをブロックする機能です。環境によっては初期状態で有効になっていないので、アプリ側で設定を確認しておきます</li>
+        <li><strong>ノーログポリシーが外部監査を受けている</strong> — PwCが2018年と2020年、Deloitteが2022年から2025年にかけて監査しています。運営会社の拠点はパナマです</li>
+      </ul>
+      <p>
+        対応OSはWindows、macOS、Linux、Android、iOSで、ブラウザ拡張はChrome、Edge、Firefoxが用意されています。
+        手持ちの端末で使えないものが出てくる、という状況にはなっていません。
+      </p>
+      <p>
+        使う場面は、だいたい次のように決めています。
+      </p>
+      <ul>
+        <li>ホテルや空港のWi-Fiに繋ぐとき</li>
+        <li>銀行や証券会社にログインするとき</li>
+        <li>MicrosoftやGoogleなど、他のサービスの土台になっている重要なアカウントを操作するとき</li>
+        <li>接続先が正式なものかどうかに確信が持てないとき</li>
+      </ul>
+      <div class="note-box">
+        <strong>会社支給のパソコンは別扱いにしてください。</strong>
+        業務用の端末では、個人で契約したVPNを勝手に入れるのではなく、会社のセキュリティ規定と、会社が指定するVPNを優先します。
+        ここに書いているのは、あくまで自分の端末で自分のアカウントを扱うときの話です。
+      </div>
+
+      <h2 id="home">旅行先でも普段の環境で使える</h2>
+      <p>
+        NordVPNでは接続するサーバーの国を選べるので、日本のサーバーを選べば、旅行先からでも普段の接続元に近い状態でインターネットを使えます。
+        海外に出ると通信の経路も接続元も変わりますが、その差を小さくできる、という機能の話です。
+      </p>
+      <p>
+        なお、各サービスをどう利用できるかは、それぞれのサービスの利用規約に従ってください。
+      </p>
+
+      <h2 id="malaysia">マレーシア出張後に届いた認証通知</h2>
+      <p>
+        ここからは僕自身の経験です。事実として確認できたことと、確認できていないことを分けて書きます。
+      </p>
+      <p>
+        マレーシアへの出張中、スマホとPCから普段どおりインターネットを使っていました。
+        通信はeSIMを用意していましたが、それだけでなくホテルのWi-Fiも使っていました。
+        ホテルが提供している正式なWi-Fiだったので問題はないだろうと考え、VPNを常時オンにはしていませんでした。
+      </p>
+      <p>
+        帰国して1週間ほど経ったころ、自分では何も操作していないのに、Microsoftの二段階認証の通知が届きました。
+        表示されていたアクセス元はマレーシアでした。
+      </p>
+      <p>
+        自分のアクセスではないので承認せず、アカウントの履歴を確認したうえで、パスワードを変更しました。
+      </p>
+      <p>
+        ここで、はっきりさせておきたいことがあります。
+      </p>
+      <ul>
+        <li>この出来事だけで<strong>「ホテルのWi-Fiからパスワードが漏れた」と断定することはできません</strong></li>
+        <li>表示された「マレーシア」という場所も、<strong>攻撃者本人の所在地とは限りません</strong>。VPNやクラウドサーバーのIPアドレスである可能性があります</li>
+        <li>したがってこれは、<strong>「VPNをオンにしなかったせいで漏れた」という証拠ではありません</strong></li>
+        <li>それでも、普段と違う通信環境を使う海外では、VPN・二段階認証・パスワード管理を組み合わせておく意味を改めて感じました</li>
+      </ul>
+      <p>
+        Microsoftのアカウントには、サインインの記録を確認する仕組みがあります。
+        <a href="https://support.microsoft.com/ja-JP/accounts-billing/security/what-is-the-recent-activity-page" rel="noopener" target="_blank">「最近のアクティビティ」ページの説明</a>
+        には、記録されるアクティビティの種類が並んでいます。「正常にサインインしました」「入力したパスワードは正しくありません」「不審なアクティビティが検出されました」といった区分があり、
+        僕に届いた二段階認証の通知は「追加の確認が要求されました」に当たります。セキュリティコードが送られたという記録です。
+      </p>
+      <p>
+        <strong>通知が来た＝パスワードが漏れていた、と決めつけないほうがいいというのがここでの結論です。</strong>
+        この記録だけでは、その前段でパスワードが正しく入力されたかどうかまでは読み取れません。区分ごとに意味が違うので、まずはサインイン履歴で実際の記録を確認するのが順番として先です。
+      </p>
+      <div class="note-box">
+        通知が来たときの動き方は決めてあります。
+        <strong>メールに書かれたリンクは踏まず</strong>、ブラウザからaccount.microsoft.comへ直接サインインする。
+        最近のアクティビティで日時と場所、デバイス、IPアドレスを確認する。
+        心当たりがなければ「これは自分ではない」を選ぶ。そのうえでパスワードを変更する。この4つです。
+        手順は<a href="https://support.microsoft.com/ja-jp/accounts-billing/security/what-happens-if-there-s-an-unusual-sign-in-to-your-account" rel="noopener" target="_blank">Microsoftの案内</a>に沿っています。
+      </div>
+
+      <h2 id="password">パスワードを使い回さない</h2>
+      <p>
+        あのとき、対応が軽く済んだのには理由があります。
+        流出があったと決まったわけではありませんが、念のためパスワードを変えるとき、
+        <strong>対象がそのアカウント1つで済みました。他のサービスで使い回していなかったからです。</strong>
+      </p>
+      <p>
+        もし同じパスワードを他でも使っていたら、どこまで変えるべきかを自分で判断できません。
+        メール、証券口座、ネット銀行、通販サイトと、思い出せる限り全部を変えることになります。
+        1か所で漏れたIDとパスワードの組み合わせが、そのまま別のサービスで試される。
+        使い回しが連鎖的な不正ログインを招くというのは、こういう構造の話です。
+      </p>
+      <p>
+        とはいえ、サービスごとに違うパスワードを設定して、それを全部覚えておくのは現実的ではありません。
+        覚えられる範囲に収めようとすると、結局似たようなパスワードになります。
+        なので僕はパスワード管理ソフトを使っています。使っているのはBitwardenです。
+      </p>
+      <p>
+        正直に書くと、僕はまだNordPassには移っていません。
+        ただ、VPNと同じNord Securityがパスワード管理も出しているなら、
+        <strong>契約先を1つにまとめてしまうのもありかな</strong>とは思っていて、乗り換えるかどうかを検討しているところです。
+        以下は、そのために調べた内容です。
+      </p>
+      <p>
+        <a href="https://nordpass.com/features/personal/" rel="nofollow noopener" target="_blank">NordPassの個人向け機能ページ</a>によると、保存・管理できるのは次のものです。
+      </p>
+      <ul>
+        <li>パスワード</li>
+        <li>パスキー</li>
+        <li>クレジットカード情報</li>
+        <li>個人情報(住所など)</li>
+        <li>セキュアノート</li>
+        <li>Documents(パスポートのスキャンなど。Premium/Family限定)</li>
+      </ul>
+      <p>
+        パスキー、自動入力・自動保存、パスワードジェネレーターは全プランで使えます。
+        パスワードヘルス、データ侵害スキャナー、メールマスキング、安全な共有、緊急アクセスはPremiumとFamily限定です。
+        暗号化方式はxChaCha20で、ゼロ知識アーキテクチャを採用しています。
+      </p>
+      <p>
+        対応環境はWindows、macOS、Linux、Android、iOSで、ブラウザ拡張はChrome、Firefox、Edge、Brave、Opera、Safariに対応しています。
+      </p>
+      <div class="note-box">
+        1点だけ、無料版を検討する人に伝えておきたい制約があります。
+        <strong>無料版は、同時に1台のデバイスでしかログインセッションを維持できません。</strong>
+        別の端末でログインすると、前の端末は自動的にログアウトされます。
+        有料版は台数に制限がなく、同時にログインしたままにできます。
+        スマホとPCの両方で使いたいなら、有料版が前提になります。
+      </div>
+
+      <h2 id="plans">プランによってNordPassの有無が違う</h2>
+      <p>
+        ここが契約前に確認しておきたいところです。
+        <a href="https://nordvpn.com/ja/pricing/" rel="nofollow noopener" target="_blank">NordVPNの日本向けプランページ</a>には、
+        <strong>ベーシックプラン、コンプリートプラン、エリートプラン</strong>の3つが並んでいます。
+      </p>
+      <p>
+        <strong>パスワードマネージャー(NordPass)は、ベーシックプランには含まれません。コンプリートプランとエリートプランに含まれます。</strong>
+        公式のプラン比較表にそう書かれています。VPNとパスワード管理を1つの契約でまとめたいなら、ここを見誤らないほうがいいです。
+      </p>
+      <p>
+        コンプリートとエリートに含まれるのは、ダークウェブモニタリングPro、迷惑電話対策、次世代のウイルス対策、広告・トラッカーブロック、パスワードマネージャー、1TBの暗号化クラウドストレージです。
+        エリートはこれに加えて固定IPが付きます。
+      </p>
+      <p>
+        選び方は2つに分かれます。
+      </p>
+      <ul>
+        <li><strong>すでに他のパスワード管理ソフトを使っている人</strong> — Bitwardenや1Passwordなどで足りているなら、必要なのはVPN機能だけです。ベーシックプランで済みます。使わないパスワードマネージャーの分まで払う理由はありません</li>
+        <li><strong>これからVPNとパスワード管理を両方揃える人、契約をまとめたい人</strong> — 別々に契約するより、NordPassを含むコンプリート以上のほうが管理の手間も請求先も減ります。前の節で書いたとおり、僕自身がいま迷っているのはここです</li>
+      </ul>
+      <div class="note-box">
+        <strong>30日間の返金保証があります。</strong>ただし条件があります。
+        対象は新規契約で、<strong>初回購入のみ</strong>です。更新後の契約期間は対象外になります。
+        また、<strong>Apple App Store経由で購入した場合はNordVPN側で返金できず、Apple側の手続きになります。</strong>
+        申請にはサポートへの連絡が必要です。詳しい条件は
+        <a href="https://support.nordvpn.com/hc/en-us/articles/19476991311121-What-is-your-refund-policy" rel="nofollow noopener" target="_blank">公式サポートの返金ポリシー</a>
+        で確認してください。
+      </div>
+
+      <div class="cta dual">
+        <div class="item">
+          <h3>VPN機能だけ要るなら、ベーシックプラン</h3>
+          <p>
+            パスワード管理はすでに他のソフトで足りている、という人向けです。
+            プランごとの内容と現在の価格は公式サイトで確認できます。
+          </p>
+          <a class="btn" href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=153982&url_id=880" rel="nofollow noopener" target="_blank">NordVPNの公式サイトでプランを見る</a>
+        </div>
+        <div class="item">
+          <h3>これから両方揃えるなら、コンプリート以上</h3>
+          <p>
+            NordPassはコンプリートとエリートに含まれます。上のプランページから選べます。
+            VPNは要らずパスワード管理だけ欲しい場合は、NordPass単体でも契約できます。
+          </p>
+          <a class="btn" href="https://go.nordpass.io/aff_c?offer_id=488&aff_id=153982&url_id=9356" rel="nofollow noopener" target="_blank">NordPassを単体で見る</a>
+        </div>
+      </div>
+
+      <h2 id="checklist">VPNだけに頼らない</h2>
+      <p>
+        最初の問いに戻ります。ホテルのWi-Fiから証券口座にログインしていいのか。
+      </p>
+      <p>
+        僕の答えは、ログインする前に手順を決めておく、です。
+        出発前に決めておけば、現地で悩む必要がなくなります。実際にやっているのは次の7つです。
+      </p>
+      <ol>
+        <li><strong>正式なWi-Fi名を確認する</strong> — フロントや客室の案内で、ホテルが公式に案内しているSSIDを確かめてから繋ぎます</li>
+        <li><strong>金融機関や重要なアカウントにアクセスするときはVPNを使う</strong> — 常時オンにしないとしても、この場面では入れます</li>
+        <li><strong>サービスごとに違うパスワードにする</strong> — 1か所の対応が1か所で済むようにしておきます</li>
+        <li><strong>パスワード管理ソフトで管理する</strong> — 全部を覚えるのは無理なので、道具に任せます</li>
+        <li><strong>二段階認証かパスキーを有効にする</strong> — パスワードが漏れた場合の最後の壁になります</li>
+        <li><strong>身に覚えのない認証要求は承認しない</strong> — 通知が来たら、まず自分の操作かどうかを確認します</li>
+        <li><strong>帰国後もログイン履歴を確認する</strong> — 僕の場合、通知が来たのは帰国から1週間後でした</li>
+      </ol>
+
+      <div class="verdict">
+        <p>
+          VPNは万能ではありません。偽サイトへの入力も、端末の中に入り込んだマルウェアも、他社からの情報漏えいも防いではくれません。
+          それでも、普段と違う通信環境を渡り歩く海外出張では、通信の経路を自分の側で決められることに意味があります。
+          二段階認証とパスワード管理を前提にしたうえで足す、選択肢の1つとしては有効だと考えています。
+        </p>
+      </div>
+
+      <div class="cta">
+        <h3>NordVPN</h3>
+        <p>
+          1契約で最大10台まで同時接続。NordLynxプロトコル、「次世代のウイルス対策」、Kill Switchを搭載。
+          ノーログポリシーは外部監査を受けています。プラン構成と価格は公式サイトで確認できます。
+        </p>
+        <a class="btn" href="https://go.nordvpn.net/aff_c?offer_id=15&aff_id=153982&url_id=880" rel="nofollow noopener" target="_blank">NordVPNの公式サイトを見る</a>
+      </div>
+
+      <p class="caption">※機能・プラン構成・提供条件は変更されることがあります。契約前に公式サイトで最新の内容をご確認ください。本記事は2026-08-03時点で公式サイトを確認した内容にもとづいています。</p>
+
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 旅の豆知識</p>
+      <p><a href="../about/">運営者情報</a> ・ <a href="../privacy/">プライバシーポリシー</a></p>
+    </footer>
+  </div>
+</body>
+</html>
