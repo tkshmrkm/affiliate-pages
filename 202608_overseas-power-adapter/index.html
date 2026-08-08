@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="「マルチ対応」と書かれた変換プラグを2つ持っていたのに、オーストラリアで差せなかった話。海外で充電できない4つの原因と、形状をカバーする1つ・差込口を増やす1つの2枚持ちに落ち着くまで。">
+  <meta name="description" content="「マルチ対応」と書かれた変換プラグを2つ持っていても、海外で差せないことがある。選ぶ基準は対応国数ではなくプラグ形状の一覧。形状のカバーと差込口の数は1台で両立しないため2台に分けた構成と、スペックで見落としやすいポート単独と合計出力の違いを解説します。">
   <meta name="theme-color" content="#17332f">
-  <title>「マルチ対応」の変換プラグを持っていたのに、海外で充電できなかった話</title>
+  <title>海外用の変換プラグは、1つで済ませないほうが早い</title>
   <meta property="og:type" content="article">
-  <meta property="og:title" content="「マルチ対応」の変換プラグを持っていたのに、海外で充電できなかった話">
-  <meta property="og:description" content="「マルチ対応」と書かれた変換プラグを2つ持っていたのに、オーストラリアで差せなかった話。海外で充電できない4つの原因と、形状をカバーする1つ・差込口を増やす1つの2枚持ちに落ち着くまで。">
+  <meta property="og:title" content="海外用の変換プラグは、1つで済ませないほうが早い">
+  <meta property="og:description" content="「マルチ対応」と書かれた変換プラグを2つ持っていても、海外で差せないことがある。選ぶ基準は対応国数ではなくプラグ形状の一覧。形状のカバーと差込口の数は1台で両立しないため2台に分けた構成と、スペックで見落としやすいポート単独と合計出力の違いを解説します。">
   <meta property="og:image" content="https://tabi-mame.com/202608_overseas-power-adapter/power-adapter-hero-v2.webp">
   <meta property="og:url" content="https://tabi-mame.com/202608_overseas-power-adapter/">
   <meta name="twitter:card" content="summary_large_image">
@@ -318,6 +318,49 @@
       .toc ol { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 24px; }
       .article-body { width: min(100%, 760px); margin-inline: auto; }
     }
+
+    .related {
+      margin-top: 46px;
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+    }
+    .related-title {
+      margin: 0 0 15px;
+      color: var(--orange);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+    }
+    .related ul {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    .related li {
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+    .related li:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+    .related li a {
+      display: block;
+      font-family: var(--serif);
+      color: var(--forest);
+      font-size: 1rem;
+      text-decoration: none;
+      text-underline-offset: 4px;
+    }
+    .related li a:hover {
+      text-decoration: underline;
+    }
+    .related li span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
     @media (max-width: 620px) {
       .shell { width: min(100% - 28px, 1180px); }
       .site-header { min-height: 72px; }
@@ -353,11 +396,10 @@
       <header class="article-hero">
         <div class="article-hero-copy">
           <div class="kicker">POWER / TRAVEL GEAR</div>
-          <h1>「マルチ対応」の変換プラグを持っていたのに、海外で充電できなかった話</h1>
+          <h1>海外用の変換プラグは、1つで済ませないほうが早い</h1>
           <p class="lede">
-            海外で充電できずに焦る原因は、だいたい決まっています。
-            やっかいなのは、変換プラグを持っていても起きることです。
-            僕は「マルチ対応」と書かれた製品を2つ持った状態で、オーストラリアで差せませんでした。
+            「マルチ対応」と書かれた変換プラグを2つ持った状態で、オーストラリアで差せませんでした。2つとも、同じ形状が抜けていたからです。
+            数を増やしても、同じ製品系統で揃えると穴は埋まりません。この記事では、そこから選び直したときに何を見たかと、いま持っている2つを書きます。
           </p>
         </div>
         <figure class="hero-visual">
@@ -372,67 +414,51 @@
       </header>
 
       <section class="quick-facts" aria-label="記事の要点">
-        <div class="fact"><span class="fact-label">詰まる原因</span><strong>4つだけ</strong><small>形状・電圧・スイッチ・差込口の数</small></div>
-        <div class="fact"><span class="fact-label">持っていく道具</span><strong>2つに分ける</strong><small>形状をカバーする1つと、口を増やす1つ</small></div>
-        <div class="fact"><span class="fact-label">見るべき数字</span><strong>対応国数ではない</strong><small>プラグ形状の一覧で判断する</small></div>
+        <div class="fact"><span class="fact-label">選ぶ基準</span><strong>対応国数ではなく形状</strong><small>行き先のプラグ形状が一覧に入っているかで選ぶ</small></div>
+        <div class="fact"><span class="fact-label">持っていく道具</span><strong>2台に分ける</strong><small>形状をカバーする1台と、口を増やす1台</small></div>
+        <div class="fact"><span class="fact-label">見落としやすい数字</span><strong>ポート単独と合計は別</strong><small>口数だけ見て買うと、全部差したとき出力が足りない</small></div>
       </section>
 
       <div class="article-layout">
         <aside class="toc" aria-label="目次">
           <p class="toc-title">CONTENTS</p>
           <ol>
-            <li><a href="#gap">「マルチ対応」でも抜けている形状がある</a></li>
-            <li><a href="#answer">役割の違う2つを持つ</a></li>
-            <li><a href="#shape">形状をカバーする1つ</a></li>
-            <li><a href="#ports">口を増やす1つ</a></li>
-            <li><a href="#knowledge">道具では解決しない2つ</a></li>
-            <li><a href="#cable">ケーブルは端子を吸収するものを1本</a></li>
-            <li><a href="#esim">通信も、準備を1つミスると詰む</a></li>
-            <li><a href="#check">出発前に、手持ちを並べて確認する</a></li>
+            <li><a href="#plug-shape-list">対応国数ではなく、プラグ形状の一覧で選ぶ</a></li>
+            <li><a href="#two-roles">1つで済ませようとすると、どこかが欠ける</a></li>
+            <li><a href="#shape-cover">形状をカバーする1台</a></li>
+            <li><a href="#port-expand">口を増やす1台</a></li>
+            <li><a href="#spec-pitfalls">スペックで見落としやすい2つ</a></li>
+            <li><a href="#cable-note">ケーブルは端子を吸収するものを1本</a></li>
+            <li><a href="#esim-note">通信も、準備を1つミスると詰む</a></li>
+            <li><a href="#count-before-buy">買う前に、手持ちを並べて数える</a></li>
           </ol>
         </aside>
 
         <article class="article-body">
 
-      <h2 id="gap">「マルチ対応」でも抜けている形状がある</h2>
+      <h2 id="plug-shape-list">対応国数ではなく、プラグ形状の一覧で選ぶ</h2>
       <p>
-        プラグの形が合わない、電圧が違う、コンセントのスイッチが入っていない、差込口が足りない。
-        海外で充電できない原因は、この4つでほとんど説明がつきます。
-      </p>
-      <ul class="cause-list">
-        <li>① プラグ形状</li>
-        <li>② 電圧</li>
-        <li>③ コンセントのスイッチ</li>
-        <li>④ 差込口の数</li>
-      </ul>
-      <p>
-        出張前にAnkerのトラベルアダプタを買い足しました。宿のコンセントが足りないことが多かったので、USBポートが付いたものを追加したかったからです。
+        製品ページに大きく出ているのは対応国数です。「200以上の国と地域」といった数字が並びます。
+        <strong>ここで選ぶと外します。</strong>
       </p>
       <p>
-        オーストラリア行きの前に確認したら、これがOタイプに対応していませんでした。
-        Oタイプというのは、オーストラリアとニュージーランドで使われている、刃が「ハの字」に開いた形です。
-        搭載されているのはA、C、Gの3種類で、メーカーは200以上の国と地域で使えるとしています。
-        実際その3種類でたいていの国はカバーできますが、スライド式で形を切り替える構造上、刃をハの字に開けません。
+        僕が差せなかったのはOタイプ、オーストラリアとニュージーランドで使われている刃が「ハの字」に開いた形です。
+        持っていた製品はA、C、Gの3種類を搭載していて、メーカーは200以上の国と地域で使えるとしていました。
+        実際その3種類でたいていの国はカバーできます。それでも、行き先がその3つに入っていなければ差せません。
       </p>
       <p>
-        ついでに予備として置いてあった古い変換プラグも引っ張り出したところ、こちらもOタイプなしでした。
-        「マルチ」と書かれたものを2つ持っていて、2つとも同じ形状が抜けていたわけです。
+        <strong>見るのは形状の一覧です。</strong>
+        行き先の形が明記されているかどうか。対応国数は、それを確認したあとの参考情報です。
       </p>
       <p>
-        現地で買い足す手も、あまりあてになりませんでした。
-        オーストラリアで探しても、小さく畳める製品は見当たらず、売っているのは箱型の大きいものばかりです。
-        小型の変換プラグは日本の製品のほうがよくできています。
-      </p>
-      <p>
-        <strong>製品を選ぶときに見るのは、対応国数ではなくプラグ形状の一覧です。</strong>
-        「200か国以上」でもOタイプが入っていなければ、オーストラリアでは差せません。
+        現地で買い足す前提も立てないほうがいいです。オーストラリアで探したときは、小さく畳める製品が見当たらず、売っているのは箱型の大きいものばかりでした。
+        <strong>小型の変換プラグは日本で買っていくほうが選べます。</strong>
       </p>
 
-      <h2 id="answer">役割の違う2つを持つ</h2>
+      <h2 id="two-roles">1つで済ませようとすると、どこかが欠ける</h2>
       <p>
-        ここから先が解決策です。結論から書くと、変換プラグは<strong>1つで済ませようとしないほうが早い</strong>という話になりました。
+        変換プラグに求めるものは2つあって、<strong>1つの製品では両立しません。</strong>
       </p>
-      <p>求めるものが2つあって、1つの製品では両立しないからです。</p>
       <ul>
         <li><strong>形状のカバー範囲</strong> — 行き先のプラグ形状が入っていること。多形状に対応するには、分割・変形する機構が要る</li>
         <li><strong>差込口の数</strong> — 宿の1口を複数口にすること。USBポートとAC差込口を積むには、本体にある程度の体積が要る</li>
@@ -440,105 +466,81 @@
       <p>
         前者を優先すると変形機構にスペースを取られてUSBポートが積めません。
         後者を優先すると本体が厚くなり、形状の切り替え方式が制限されます。
-        冒頭のAnkerがOタイプを落としたのも、この兼ね合いの結果です。
+        僕が差せなかった製品がOタイプを落としたのも、スライド式で切り替える構造上、刃をハの字に開けなかったからです。
       </p>
       <p>
         なので、それぞれに特化した2つを持つことにしました。合わせても200g前後で、荷物としては誤差の範囲です。
       </p>
 
-      <h2 id="shape">形状をカバーする1つ</h2>
+      <h2 id="shape-cover">形状をカバーする1台</h2>
       <p>
-        使っているのはサンワサプライの海外電源変換アダプタ TR-AD4Wです。
+        <a href="https://direct.sanwa.co.jp/ItemPage/TR-AD4W" rel="noopener" target="_blank">サンワサプライの海外電源変換アダプタ TR-AD4W</a>を使っています。
       </p>
       <p>
-        本体を分割したり合体させたりして形を変えるタイプで、A、B、BF、B3、C、SE、O、O2、CBの9種類に変換できます。
+        本体を分割したり合体させたりして形を変えるタイプで、A、B、BF、B3、C、SE、O、O2、CBの<strong>9種類</strong>に変換できます。
         メーカーの製品ページでは158か国対応とされています。重さは55g、厚さは16.5mmです。
       </p>
       <p>
-        欧州、シンガポール、中国、オーストラリアと、行った先ではどこでも使えました。
-        Oタイプが最初から入っているので、オーストラリアでも何も考えずに差せます。
+        <strong>Oタイプが最初から入っている</strong>ので、オーストラリアでも何も考えずに差せます。欧州、シンガポール、中国と、行った先ではどこでも使えました。
       </p>
       <p>
         これは宿に置かず、外出時のポーチに常に入れています。
-        空港のラウンジや待合、それから機内の座席では、日本と同じタイプAの差込口がまだかなり残っているからです。
-        逆に言うと、電源はあるのにプラグが合わないという状況は、空港の外に出ると普通に起きます。
+        空港のラウンジや待合、機内の座席では日本と同じタイプAがまだかなり残っている一方、
+        <strong>電源はあるのにプラグが合わない状況は空港の外に出ると普通に起きます。</strong>
         55gのものを1つ入れておくだけで、この差が埋まります。
       </p>
-
       <div class="cta">
-        <h3>形状のカバーはこれ1つ</h3>
-        <p>
-          サンワサプライ TR-AD4W。9種類のプラグ形状に変形し、オーストラリアのOタイプにも対応します。
-          重さ55g、厚さ16.5mm。メーカー標準価格は¥3,850(税込)です。
-        </p>
-        <!-- サンワダイレクト提携が通ったら、そのMyLinkに差し替える -->
-
-        <a class="btn" href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3777212&pid=892670807" rel="nofollow noopener" target="_blank">Yahoo!ショッピングで探す</a>
+        <h3>サンワサプライ TR-AD4W</h3>
+        <a class="btn" href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3777212&pid=892670807" rel="nofollow noopener" target="_blank">Yahoo!ショッピングで TR-AD4W を探す</a>
       </div>
+      <p>
+        サンワサプライの直営店です。製品1年保証と最短当日出荷が付きます。
+      </p>
 
-      <h2 id="ports">口を増やす1つ</h2>
+      <h2 id="port-expand">口を増やす1台</h2>
       <p>
         宿の部屋にコンセントが1口しかない、ということは普通にあります。
-        そこにスマホ、仕事用のスマホ、PC、モバイルバッテリー、ワイヤレスイヤホンと並ぶので、
-        形を変えるだけのアダプタでは1台ぶんしか埋まりません。
+        そこにスマホ、仕事用のスマホ、PC、モバイルバッテリー、ワイヤレスイヤホンと並ぶので、形を変えるだけのアダプタでは1台ぶんしか埋まりません。
       </p>
       <p>
-        ここで効くのが、冒頭でOタイプ非対応だったAnkerのトラベルアダプタです。オーストラリア以外では、これがよくできています。
+        使っているのはAnkerのトラベルアダプタです。冒頭でOタイプ非対応だったのがこれで、<strong>オーストラリア以外ではよくできています。</strong>
       </p>
       <p>
         USB-Cが2つ、USB-Aが2つ、そこにAC差込口が1つ付いていて、合わせて5台まで同時に給電できます。
-        宿のコンセント1口が、そのまま5口になります。AC側は8Aまで使えるので、PCの純正充電器はここに差せます。
-      </p>
-      <p>
-        出力はUSB-C1が単独で最大20W、USB-C2が15W、USB-A各ポートが12Wです。
-        複数ポートを同時に使うと合計15Wに制限されるので、スマホやイヤホンを一晩かけて充電する用途と割り切るのが正解です。
-        PCを急いで充電したいときは、AC側へ自分の充電器を差すほうが早くなります。
+        AC側は8Aまで使えるので、PCの純正充電器はここに差せます。本体は約86×51×31mmで、一般的なトラベルアダプタより約30%小さいとされています。
+        PSE認証を取得していて、8A以上の過電流を検知するとAC差込口の電源を自動で切る仕組みも入っています。
       </p>
       <p>
         プラグの切り替えは側面のレバーをスライドさせるだけで、分解も組み立ても要りません。
-        本体は約86×51×31mmで、一般的なトラベルアダプタより約30%小さいとされています。
-        PSE認証を取得していて、8A以上の過電流を検知するとAC差込口の電源を自動で切る仕組みも入っています。
       </p>
-
       <div class="cta">
-        <h3>差込口を増やすのはこれ1つ</h3>
-        <p>
-          Anker Nano トラベルアダプタ (5-in-1, 20W)。宿のコンセント1口を5口にします。
-          公式ストアは4,000円以上で送料無料、会員登録すると保証期間が6ヶ月延長されます。
-        </p>
+        <h3>Anker Nano トラベルアダプタ</h3>
         <a class="btn" href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3777212&pid=892670765" rel="nofollow noopener" target="_blank">Anker公式オンラインストアで見る</a>
       </div>
+      <p>
+        公式ストアは4,000円以上で送料無料、会員登録すると保証期間が6か月延長されます。
+      </p>
 
-      <h2 id="knowledge">道具では解決しない2つ</h2>
+      <h2 id="spec-pitfalls">スペックで見落としやすい2つ</h2>
       <p>
-        冒頭に挙げた4つの原因のうち、残りの2つは買い物では片づきません。知っているかどうかだけの話です。
+        口数の多い製品を選ぶとき、カタログの数字だけ見ていると外すところが2つあります。
       </p>
       <p>
-        <strong>電圧は変換プラグでは変わりません。</strong>
-        変換プラグはプラグの形を合わせるだけの部品です。TR-AD4Wにも変圧機能はなく、許容容量が6A 250Vと表示されているだけです。
-        日本は100V、欧州やオーストラリアは230V前後、アメリカは120Vです。
-        スマホとPCの充電器は入力が100〜240Vに対応している製品がほとんどなので、形さえ合えばそのまま使えます。
-        手元の充電器のラベルに「INPUT 100-240V」と書いてあるか、出発前に見ておいてください。
-        気をつけたいのはヘアドライヤーやヘアアイロンで、日本国内向けの100V専用モデルを230Vの国で差すと壊れます。
+        <strong>1つめは、ポート単独の上限と本体全体の上限が別に決まっていること。</strong>
+        僕が使っているものは、USB-C1が単独で最大20W、USB-C2が15W、USB-A各ポートが12Wですが、複数ポートを同時に使うと合計15Wに制限されます。
+        口の数だけ見て買うと、全部差したときに思ったより出ません。
+        <strong>夜のあいだにスマホとイヤホンを充電しておく用途と割り切る</strong>のが実際的で、PCを急ぎたいときはAC側へ自分の充電器を差すほうが早くなります。
       </p>
       <p>
-        <strong>差したのに充電されないときは、コンセントのスイッチです。</strong>
-        オーストラリアのコンセントには、差込口ごとにON/OFFのスイッチが付いていることが多くあります。
-        イギリスやシンガポールなど、BFタイプを使う国でも同じです。
-        日本のコンセントは差せば通電するのが当たり前なので、初めてだとまず疑いません。
-        やることは、差込口の横にある小さなスイッチを押すだけです。
+        <strong>2つめは、差込口の数え方。</strong>
+        「5台同時」と書かれていても、その5つにAC差込口が含まれているのか、USBだけで5つなのかは製品によって違います。
+        <strong>自分が同時に何を充電したいかを先に数えてから</strong>スペックを見ると、外しません。
       </p>
-      <div class="note-box">
-        同じ症状で紛らわしいのが、ヨーロッパのホテルによくある<strong>カードキー式のホルダー</strong>です。
-        部屋の入り口にあるスロットへカードを差さないと、部屋全体の電源が落ちたままになります。
-        外出中に充電しておいたつもりが、帰ってきたら残量が減っていない、というのはこれが原因です。
-      </div>
 
-      <h2 id="cable">ケーブルは端子を吸収するものを1本</h2>
+      <h2 id="cable-note">ケーブルは端子を吸収するものを1本</h2>
       <p>
         ポーチにはもう1つ、<a href="https://www.amazon.co.jp/dp/B09NQ564TQ?tag=tabimamegpt-22" rel="nofollow noopener" target="_blank">入力にType-AとType-Cのどちらも使える3in1ケーブル</a>を入れています。
-        出力側が3つに分かれているので、これ1本で自分のスマホと仕事用のスマホを同時に充電できます。
-        差込口が1つしかない席でも困りません。
+        出力側が3つに分かれているので、これ1本で自分のスマホと仕事用のスマホを同時に充電できます。差込口が1つしかない席でも困りません。
       </p>
       <p>
         仕事用のiPhoneがSE(第3世代)でLightning端子なので、Lightningが1本に含まれているケーブルが重宝しています。
@@ -547,34 +549,34 @@
         をかぶせて対応しています。
       </p>
 
-      <h2 id="esim">通信も、準備を1つミスると詰む</h2>
+      <h2 id="esim-note">通信も、準備を1つミスると詰む</h2>
       <p>
         電源と並んで海外で詰まりやすいのが通信です。
         こちらもeSIMを1つ用意しておけば、現地で買い直す必要がなくなります。
         買ったQRコードをその場で相手のスマホに読ませるだけで共有できるので、同行者や家族の分もまとめて面倒を見られます。
       </p>
       <p>
-        詳しくは<a href="../202607_airalo-esim/">海外出張・旅行でAiraloのeSIMを使っている理由</a>にまとめました。
-      </p>
-
-      <h2 id="check">出発前に、手持ちを並べて確認する</h2>
-      <p>
-        2つ持ちに変えてから、電源で困ることはなくなりました。
-        形状はTR-AD4Wが引き受け、口数はAnkerが引き受ける。
-        役割が分かれているので、どちらか1つに減らす判断にはなりませんでした。
+        詳しくは別の記事にまとめました。
       </p>
       <p>
-        そのうえで、出発前に必ずやることが1つあります。
-        <strong>手持ちの変換プラグを全部並べて、行き先の形状が入っているかを確認する</strong>ことです。
+        <a href="../202607_airalo-esim/" rel="noopener" target="_blank">海外出張・旅行でAiraloのeSIMを使っている理由</a>
       </p>
 
-      <div class="verdict">
-        <p>
-          僕が失敗したのは、2つ持っていたのに2つとも同じ形状が抜けていたからでした。
-          数を増やしても、同じ製品系統で揃えると穴は埋まりません。
-          予備を含めて、対応形状が偏っていないかを見てください。それだけで、この記事に書いた失敗は避けられます。
-        </p>
-      </div>
+      <h2 id="count-before-buy">買う前に、手持ちを並べて数える</h2>
+      <p>
+        買い足す前にやることが2つあります。
+      </p>
+      <p>
+        <strong>手持ちの変換プラグを全部並べて、対応形状が偏っていないかを見る。</strong>
+        僕が失敗したのは、2つ持っていたのに2つとも同じ形状が抜けていたからでした。予備を含めて一覧にすると、どこに穴があるかが分かります。
+      </p>
+      <p>
+        <strong>同時に充電したい機器を数える。</strong>
+        スマホ、仕事用のスマホ、PC、モバイルバッテリー、イヤホン。この数が、口数を選ぶときの基準になります。数えずに買うと、多すぎるか足りないかのどちらかになります。
+      </p>
+      <p>
+        そのうえで、<strong>形状をカバーする1台と、口を増やす1台</strong>に分ける。2つ持ちに変えてから、電源で困ることはなくなりました。
+      </p>
 
       <div class="cta dual">
         <div class="item">
@@ -582,7 +584,7 @@
           <p>
             9種類のプラグ形状に変形。Oタイプ対応。55g、厚さ16.5mm。形状のカバー担当。
           </p>
-          <a class="btn" href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3777212&pid=892670807" rel="nofollow noopener" target="_blank">Yahoo!ショッピングで探す</a>
+          <a class="btn" href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3777212&pid=892670789" rel="nofollow noopener" target="_blank">サンワダイレクトで見る</a>
         </div>
         <div class="item">
           <h3>Anker Nano トラベルアダプタ (5-in-1, 20W)</h3>
@@ -594,6 +596,20 @@
       </div>
 
       <p class="caption">※製品仕様は2026-08-01時点でメーカーの製品ページを確認した内容です。購入前に最新の仕様をご確認ください。</p>
+
+      <aside class="related" aria-label="関連記事">
+        <p class="related-title">この記事を読んだ人は</p>
+        <ul>
+          <li>
+            <a href="../202607_airalo-esim/">海外出張・旅行でAiraloのeSIMを使っている理由</a>
+            <span>eSIMのAiraloに切り替えた理由と設定手順、プランの選び方</span>
+          </li>
+          <li>
+            <a href="../202607_suitcase-rental/">スーツケースを買わずに借りている理由</a>
+            <span>スーツケースは買うかレンタルか、価格差から出す損益分岐点</span>
+          </li>
+        </ul>
+      </aside>
 
         </article>
       </div>

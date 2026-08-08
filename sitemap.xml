@@ -31,6 +31,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://tabi-mame.com/202608_hotel-booking-by-destination/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://tabi-mame.com/about/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
